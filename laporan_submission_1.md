@@ -205,7 +205,7 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
        - False Negative - nilai prediksi 0, nilai aktual 1.
   ```  
 
-       Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
+       - Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
    ```   
        Logistic Regression:
