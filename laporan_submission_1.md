@@ -183,81 +183,73 @@ models.loc['test_mse','Boosting'] = mean_squared_error(y_pred=boosting.predict(X
 Evaluasi kinerja pemodelan machine learning dilakukan dengan beberapa cara.
 
 Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diukur kinerjanya dengan beberapa metriks. Berikut ini penjelasannya:
-  1. **Mean Squared Error (MSE)** - Hasil pengukuran dari data training maupun testing adalah sebagai berikut: 
-       - train_mse: 0.188797
-       - test_mse:	0.165289
-       Kelebihan MSE disini salah satunya adalah untuk mengidentifikasi apakah di model kita terdapat outlier yang akan menyebabkan nilai error menjadi sangat besar. Nilai MSE yang cukup besar (> 0.1) disini kemungkinan disebabkan adanya rentang yang cukup jauh antara nilai rata-rata dengan maksimum di beberapa fitur seperti pendapatan dan pendapatan pasangan.
 
-       Berikut hasil evaluasi MSE dari ketiga model:
-
-         	
-                    Logistic Regression	Random Forest	Boosting
-          train_mse	0.188797	          0.029990	     0.13790
-          test_mse	0.165289	          0.153723	     0.14803
+### 6.1. **Mean Squared Error (MSE)** 
   
+Kelebihan MSE disini salah satunya adalah untuk mengidentifikasi apakah di model kita terdapat outlier yang akan menyebabkan nilai error menjadi sangat besar. Nilai MSE yang cukup besar (> 0.1) disini kemungkinan disebabkan adanya rentang yang cukup jauh antara nilai rata-rata dengan maksimum di beberapa fitur seperti pendapatan dan pendapatan pasangan.
 
-  2.a. **Confusion Matrix** - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
+Berikut hasil evaluasi MSE dari ketiga model:
+
+|           | Logistic Regression | Random Forest | Boosting |
+|-----------|---------------------|---------------|----------|
+| train_mse | 0.188797            | 0.029990      | 0.13790  |
+| test_mse  | 0.165289            | 0.153723      | 0.14803  |
+
+### 6.2.a. **Confusion Matrix**
+
+- Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
        
-  ```         
-       - True Positive - nilai prediksi 1, nilai aktual 1.
-       - True Negative - nilai prediksi 0, nilai aktual 0.
-       - False Positive - nilai prediksi 1, nilai aktual 0.
-       - False Negative - nilai prediksi 0, nilai aktual 1.
-  ```  
+|                | Nilai Prediksi | Nilai Aktual |
+|----------------|----------------|--------------|
+| True Positive  | 1              | 1            |
+| False Positive | 0              | 0            |
+| False Negative | 1              | 0            |
+| True Negative  | 0              | 1            |
 
-       - Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
+- Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
-   ```   
-       Logistic Regression:
-       [[16 19]
-        [ 1 85]]
-       
-       Dimana TP = 16, FP = 19, FN = 1, TN = 85.
+|                  | Logistic Regression | Random Forest     | Boosting          |
+|------------------|---------------------|-------------------|-------------------|
+| Confusion Matrix | [16, 19]            | [19, 16]          | [16, 19]          |
+|                  | [1 , 85]            | [12, 74]          | [1 , 85]          |
+| True Positive    | 16                  | 19                | 16                |
+| False Positive   | 19                  | 16                | 19                |
+| False Negative   | 1                   | 12                | 1                 |
+| True Negative    | 85                  | 74                | 85                |
 
-       Random Forest:
-       [[19 16]
-        [12 74]]
-
-       Dimana TP = 19, FP = 16, FN = 12, TN = 74.
-
-       Boosting:
-       [[16 19]
-        [ 1 85]]
-     
-       Dimana TP = 16, FP = 19, FN = 1, TN = 85.
-  ```    
-
-  2.b. **Akurasi** - Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
-
-  ```  
-       Skor akurasi dari model Logistic Regression adalah: 0.8347107438016529
-       Skor akurasi dari model Random Forest adalah: 0.768595041322314
-       Skor akurasi dari model Boosting adalah: 0.8347107438016529
-  ```  
-
-  2.c. **Presisi** - Presisi diukur dengan rumus = TP / (TP + FP)
+### 6.2.b. **Akurasi** 
   
-  ```  
-       Skor presisi dari model Logistic Regression adalah: 0.8173076923076923
-       Skor presisi dari model Random Forest adalah: 0.8222222222222222 
-       Skor presisi dari model Boosting adalah: 0.8173076923076923
-  ```  
+- Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
 
-  2.d. **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = TP / (TP + FN)
+|                     | Accuracy           |
+|---------------------|--------------------|
+| Logistic Regression | 0.8347107438016529 |
+| Random Forest       | 0.768595041322314  |
+| Boosting            | 0.8347107438016529 | 
+
+### 6.2.c. **Presisi** - Presisi diukur dengan rumus = TP / (TP + FP)
   
-  ```  
-       Skor sensitivitas dari model Logistic Regression adalah: 0.9883720930232558
-       Skor sensitivitas dari model Random Forest adalah: 0.8604651162790697
-       Skor sensitivitas dari model Boosting adalah: 0.9883720930232558
-  ```  
+|                     | Precision          |
+|---------------------|--------------------|
+| Logistic Regression | 0.8173076923076923 |
+| Random Forest       | 0.8222222222222222 |
+| Boosting            | 0.8173076923076923 |
 
-  3. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
+### 6.2.d. **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = TP / (TP + FN)
+  
+|                     | Sensitivity        |
+|---------------------|--------------------|
+| Logistic Regression | 0.9883720930232558 |
+| Random Forest       | 0.8604651162790697 |
+| Boosting            | 0.9883720930232558 |
 
-  ```      
-     Nilai AUC dari model Logistic Regression adalah: 0.7227574750830565
-     Nilai AUC dari model Random Forest adalah: 0.7016611295681063
-     Nilai AUC dari model Boosting adalah: 0.7227574750830565
-  ```
+## 6.3. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
+
+|                     | AUC                |
+|---------------------|--------------------|
+| Logistic Regression | 0.7227574750830565 |
+| Random Forest       | 0.7016611295681063 |
+| Boosting            | 0.7227574750830565 |
 
 ## 7. Kesimpulan
 
