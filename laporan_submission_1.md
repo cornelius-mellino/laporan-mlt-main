@@ -189,10 +189,12 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
        Kelebihan MSE disini salah satunya adalah untuk mengidentifikasi apakah di model kita terdapat outlier yang akan menyebabkan nilai error menjadi sangat besar. Nilai MSE yang cukup besar (> 0.1) disini kemungkinan disebabkan adanya rentang yang cukup jauh antara nilai rata-rata dengan maksimum di beberapa fitur seperti pendapatan dan pendapatan pasangan.
 
        Berikut hasil evaluasi MSE dari ketiga model:
-       	
+
+  ```         	
                     Logistic Regression	Random Forest	Boosting
           train_mse	0.188797	          0.029990	     0.13790
           test_mse	0.165289	          0.153723	     0.14803
+  ```  
 
   2.a. **Confusion Matrix** - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
        - True Positive - nilai prediksi 1, nilai aktual 1.
@@ -202,6 +204,7 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
         
        Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
+  ```  
        Logistic Regression:
        [[16 19]
         [ 1 85]]
@@ -219,27 +222,38 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
         [ 1 85]]
      
        Dimana TP = 16, FP = 19, FN = 1, TN = 85.
+  ```  
 
   2.b. **Akurasi** - Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
+
+  ```  
        Skor akurasi dari model Logistic Regression adalah: 0.8347107438016529
        Skor akurasi dari model Random Forest adalah: 0.768595041322314
        Skor akurasi dari model Boosting adalah: 0.8347107438016529
+  ```  
 
   2.c. **Presisi** - Presisi diukur dengan rumus = TP / (TP + FP)
+  
+  ```  
        Skor presisi dari model Logistic Regression adalah: 0.8173076923076923
        Skor presisi dari model Random Forest adalah: 0.8222222222222222 
        Skor presisi dari model Boosting adalah: 0.8173076923076923
 
   2.d. **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = TP / (TP + FN)
+  
+  ```  
        Skor sensitivitas dari model Logistic Regression adalah: 0.9883720930232558
        Skor sensitivitas dari model Random Forest adalah: 0.8604651162790697
        Skor sensitivitas dari model Boosting adalah: 0.9883720930232558
-        
+  ```  
+
   3. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
-      
+
+  ```      
   Nilai AUC dari model Logistic Regression adalah: 0.7227574750830565
   Nilai AUC dari model Random Forest adalah: 0.7016611295681063
   Nilai AUC dari model Boosting adalah: 0.7227574750830565
+  ```
 
 ## 7. Kesimpulan
 
