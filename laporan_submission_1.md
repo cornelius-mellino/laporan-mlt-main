@@ -197,14 +197,17 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
   
 
   2.a. **Confusion Matrix** - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
+       
+  ```         
        - True Positive - nilai prediksi 1, nilai aktual 1.
        - True Negative - nilai prediksi 0, nilai aktual 0.
        - False Positive - nilai prediksi 1, nilai aktual 0.
        - False Negative - nilai prediksi 0, nilai aktual 1.
-        
+  ```  
+
        Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
-  
+   ```   
        Logistic Regression:
        [[16 19]
         [ 1 85]]
@@ -222,7 +225,7 @@ Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diuku
         [ 1 85]]
      
        Dimana TP = 16, FP = 19, FN = 1, TN = 85.
-  
+  ```    
 
   2.b. **Akurasi** - Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
 
