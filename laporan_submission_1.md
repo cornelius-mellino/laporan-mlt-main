@@ -4,20 +4,8 @@
 
 Proyek machine learning terapan kali ini adalah membuat satu pemodelan yang mampu memprediksi kelayakan pemberian persetujuan kredit KPR untuk pengajuan yang diproses. Beberapa variabel atau fitur menjadi elemen dari inputan pemodelan yang dibangun.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 - Eligibility atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Dengan solusi implementasi model machine learning diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, digunakan algoritma logistic regression yang mampu memberikan output yang mewakili keputusan disetujui (1) atau ditolak (0). 
   
-- Referensi:
-  1. Loan Eligibility Dataset. 2020. (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
-  2. Loan Eligibility Machine Learning. 2020. (https://www.kaggle.com/code/vikasukani/loan-eligibility-prediction-machine-learning)
-  3. Pengenalan Machine Learning dengan Python, Dios Kurniawan, M.Sc, Elex Media, Jakarta, 2021.
-  4. Scikit Learn Logistic Regression. (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
-  5. Understanding The 3 Most Common Loss Functions for Machine Learning Regression. 2019. (https://towardsdatascience.com/understanding-the-3-most-common-loss-functions-for-machine-learning-regression-23e0ef3e14d3)
-  6. Advantages and Disadvantage of Logistic Regression. 2022. (https://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/)
-  7. Why Data Scaling is Important in Machine Learning. 2021. (https://analyticsindiamag.com/why-data-scaling-is-important-in-machine-learning-how-to-effectively-do-it/#:~:text=So%20if%20the%20data%20in,between%20them%20will%20be%20lower.)
-  8. Random Forest Pros and Cons. 2020. (https://medium.datadriveninvestor.com/random-forest-pros-and-cons-c1c42fb64f04)
-  9. Boosting. 2022. (https://corporatefinanceinstitute.com/resources/data-science/boosting/)
-
 ## 2. Business Understanding
 
 Dalam pengajuan kredit, baik manual (paper based) dan online, semuanya harus melalui serangkaian pengecekan data, analisa dan scoring untuk menentukan kelayakannya untuk disetujui. Hal yang menentukan kelayakan tersebut biasanya berupa serangkaian variabel yang harus diisi nilainya saat nasabah mengisi form pengajuannya. 
@@ -34,7 +22,6 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
 - Memanfaatkan variabel atau fitur yang benar-benar memiliki keterkaitan esensial saja dengan hasil kelayakan pengajuan kredit.
 - Mempercepat pengajuan kredit dengan mengimplementasikan pemodelan machine learning berbasiskan algoritma logistic regression.
 
-**Rubrik/Kriteria Tambahan (Opsional)**
 ### 2.3. Solution specifications
   Implementasi pemodelan machine learning untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
   - Model menggunakan algoritma Logistic Regression.
@@ -219,7 +206,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
+- Akurasi diukur dengan rumus = $$\(TP + TN)/(TP + TN + FP + FN)
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -227,7 +214,8 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Random Forest       | 0.768595041322314  |
 | Boosting            | 0.8347107438016529 | 
 
-### 6.2.c. **Presisi** - Presisi diukur dengan rumus = TP / (TP + FP)
+### 6.2.c. **Presisi**
+- Presisi diukur dengan rumus = $$\TP / (TP + FP)
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -235,7 +223,8 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Random Forest       | 0.8222222222222222 |
 | Boosting            | 0.8173076923076923 |
 
-### 6.2.d. **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = TP / (TP + FN)
+### 6.2.d. **Sensitivitas / Recall** 
+- Sensitivitas diukur dengan rumus = $$\TP / (TP + FN)
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
@@ -243,7 +232,8 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Random Forest       | 0.8604651162790697 |
 | Boosting            | 0.9883720930232558 |
 
-## 6.3. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
+## 6.3. **Area Under Curve (AUC)** 
+- Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
 
 |                     | AUC                |
 |---------------------|--------------------|
@@ -255,4 +245,13 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (Logistic Regression, Random Forest dan Boosting) adalah bahwa algoritma Boosting memiliki kinerja yang paling optimal diantara ketiganya. Dengan skor akurasi, presisi dan sensitivitas serta AUC yang sama dengan Logistic Regression, Boosting menghasilkan nilai MSE yang lebih kecil. Sedangkan Random Forest kinerjanya masih berada dibawah dari kedua model lainnya.
 
-**---Ini adalah bagian akhir laporan---**
+## 8. Referensi:
+  1. Loan Eligibility Dataset. 2020. (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
+  2. Loan Eligibility Machine Learning. 2020. (https://www.kaggle.com/code/vikasukani/loan-eligibility-prediction-machine-learning)
+  3. Pengenalan Machine Learning dengan Python, Dios Kurniawan, M.Sc, Elex Media, Jakarta, 2021.
+  4. Scikit Learn Logistic Regression. (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
+  5. Understanding The 3 Most Common Loss Functions for Machine Learning Regression. 2019. (https://towardsdatascience.com/understanding-the-3-most-common-loss-functions-for-machine-learning-regression-23e0ef3e14d3)
+  6. Advantages and Disadvantage of Logistic Regression. 2022. (https://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/)
+  7. Why Data Scaling is Important in Machine Learning. 2021. (https://analyticsindiamag.com/why-data-scaling-is-important-in-machine-learning-how-to-effectively-do-it/#:~:text=So%20if%20the%20data%20in,between%20them%20will%20be%20lower.)
+  8. Random Forest Pros and Cons. 2020. (https://medium.datadriveninvestor.com/random-forest-pros-and-cons-c1c42fb64f04)
+  9. Boosting. 2022. (https://corporatefinanceinstitute.com/resources/data-science/boosting/)
