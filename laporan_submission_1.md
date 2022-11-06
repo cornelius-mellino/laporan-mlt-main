@@ -42,15 +42,15 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        
        **Akurasi** 
        
-       - Akurasi diukur dengan rumus = ${(TP + TN)}/{(TP + TN + FP + FN)}$
+       - Akurasi diukur dengan rumus = $\frac{(TP + TN)}{(TP + TN + FP + FN)}$
        
        **Presisi** 
        
-       - Presisi diukur dengan rumus = ${TP} / {(TP + FP)}$
+       - Presisi diukur dengan rumus = $\frac{TP}{(TP + FP)}$
        
        **Sensitivitas / Recall** 
        
-       - Sensitivitas diukur dengan rumus = ${TP} / {(TP + FN)}$
+       - Sensitivitas diukur dengan rumus = $\frac{TP}{(TP + FN)}$
     
     c. **Area Under Curve (AUC)** 
     
@@ -230,7 +230,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus = $${(TP + TN)}/{(TP + TN + FP + FN)}$$
+- Akurasi diukur dengan rumus = $$\frac{(TP + TN)}{(TP + TN + FP + FN)}$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -240,7 +240,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.c. **Presisi**
 
-- Presisi diukur dengan rumus = $${TP} / {(TP + FP)}$$
+- Presisi diukur dengan rumus = $$\frac{TP}{(TP + FP)}$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -250,7 +250,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.d. **Sensitivitas / Recall** 
 
-- Sensitivitas diukur dengan rumus = $${TP} / {(TP + FN)}$$
+- Sensitivitas diukur dengan rumus = $$\frac{TP}{(TP + FN)}$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
