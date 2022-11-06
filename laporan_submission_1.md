@@ -26,16 +26,35 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
   Implementasi pemodelan machine learning untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
   - Model menggunakan algoritma Logistic Regression.
   - Penilaian performa menggunakan beberapa buah metrik/metode pengukuran.
-    a. **Mean Squared Error (MSE)** - Metrik ini mengkuadratkan perbedaan nilai antara prediksi dan aktual, lalu mengambil nilai akhir rata-ratanya.
-    b. **Confusion Matrix** - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
+
+    a. **Mean Squared Error (MSE)** 
+    
+    - Metrik ini mengkuadratkan perbedaan nilai antara prediksi dan aktual, lalu mengambil nilai akhir rata-ratanya.
+
+    b. **Confusion Matrix** 
+    
+    - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
+
        - True Positive - nilai prediksi 1, nilai aktual 1.
        - True Negative - nilai prediksi 0, nilai aktual 0.
        - False Positive - nilai prediksi 1, nilai aktual 0
        - False Negative - nilai prediksi 0, nilai aktual 1
-       **Akurasi** - Akurasi diukur dengan rumus = $\(TP + TN)/(TP + TN + FP + FN)$
-       **Presisi** - Presisi diukur dengan rumus = $\TP / (TP + FP)$
-       **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = $\TP / (TP + FN)$
-    c. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC.
+       
+       **Akurasi** 
+       
+       - Akurasi diukur dengan rumus = $\(TP + TN)/(TP + TN + FP + FN)$
+       
+       **Presisi** 
+       
+       - Presisi diukur dengan rumus = $TP / (TP + FP)$
+       
+       **Sensitivitas / Recall** 
+       
+       - Sensitivitas diukur dengan rumus = $TP / (TP + FN)$
+    
+    c. **Area Under Curve (AUC)** 
+    
+    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC.
 
 ## 3. Data Understanding
 Data yang dipakai pada proyek ini adalah Loan Eligible Dataset dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
@@ -57,7 +76,6 @@ Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani s
 - Property_Area	: Area properti, Urban/ Semi-Urban/ Rural
 - Loan_Status	: Status persetujuan kredit, (Y/N)
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory sebagai berikut:
 - Melihat bagian awal tabel data dengan function head().
 - Melihat summary data dengan function describe().
@@ -77,6 +95,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan algoritma Logistic Regression, karena algoritma ini cocok untuk permasalahan dengan banyak variabel independen dan menghasilkan output biner (0/1, Ya/Tidak, Approve/Reject dll).
 
 **Kelebihan**
+
 - Mudah diimplementasikan.
 - Bisa mengakomodir multi-variabel.
 - Tidak hanya memberikan ukuran seberapa tepat suatu prediktor (ukuran koefisien), tetapi juga arah asosiasinya (positif atau negatif).
@@ -85,6 +104,7 @@ Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan al
 - Ini dapat menginterpretasikan koefisien model sebagai indikator pentingnya fitur.
 
 **Kekurangan**
+
 - Jika jumlah observasi lebih kecil dari jumlah fitur, Logistic Regression tidak bisa dipakai karena dapat menyebabkan overfitting.
 - Keterbatasan utama Regresi Logistik adalah asumsi linearitas antara variabel dependen dan variabel independen.
 - Hanya dapat digunakan untuk memprediksi fungsi diskrit. Oleh karena itu, variabel terikat Regresi Logistik terikat pada himpunan bilangan diskrit.
@@ -114,6 +134,7 @@ Pada code diatas, kita menggunakan teknik pipelining dimana sebelum data masuk k
 Pemodelan kedua yang dipilih adalah Random Forest. Algoritma ini merupakan salah satu algoritma Ensemble dimana konsepnya adalah mengkombinasikan hasil dari beberapa algoritma yang dijalankan untuk mencari hasil yang optimal. Di Random Forest, beberapa Decision Trees dibuat kemudian untuk masalah klasifikasi, kelas-kelas yang banyak terpilih oleh semua Decision Trees akan dipilih, sedangkan untuk masalah regresi dipilih nilai rata-rata outputnya. Algoritma ini cenderung lebih baik daripada algoritma Decision Trees tunggal, dan mampu memperbaiki masalah overfittingnya juga.
 
 **Kelebihan**
+
 - Random Forest dapat digunakan untuk tugas klasifikasi dan regresi.
 - Random Forest bekerja dengan baik dengan data kategorikal dan numerik. Biasanya tidak diperlukan penskalaan atau transformasi variabel.
 - Random Forest secara implisit melakukan pemilihan fitur dan menghasilkan Decision Trees yang tidak berkorelasi. Ini dilakukan dengan memilih serangkaian fitur acak untuk membangun setiap Decision Trees. Ini juga menjadikannya model yang hebat ketika Anda harus bekerja dengan sejumlah besar fitur dalam data.
@@ -122,6 +143,7 @@ Pemodelan kedua yang dipilih adalah Random Forest. Algoritma ini merupakan salah
 - Random Forest umumnya memberikan akurasi tinggi dan menyeimbangkan trade-off bias-varians dengan baik. Karena prinsip model adalah untuk merata-ratakan hasil di beberapa Decision Trees yang dibuatnya, model ini juga meratakan variansnya.
 
 **Kekurangan**
+
 - Random Forest tidak mudah ditafsirkan. Mereka memberikan kepentingan fitur tetapi tidak memberikan visibilitas lengkap ke dalam koefisien sebagai regresi linier.
 - Random Forest dapat secara komputasi intensif untuk kumpulan data besar.
 - Random Forest seperti algoritma black box, Anda hanya memiliki sedikit kendali atas apa yang dilakukan model.
@@ -145,11 +167,13 @@ models.loc['test_mse','Random Forest'] = mean_squared_error(y_pred=RF.predict(X_
 Pemodelan ketiga yang dipilih adalah Boosting. Algoritma ini mengkombinasikan beberapa algoritma "learners" yang ujungnya diharapkan mampu menghasilkan keluaran yang kuat. Di dalam algoritma Boosting ini dikombinasikan beberapa algoritma yang masing-masing punya kelebihan dan kekurangan, dimana diharapkan kombinasi antara "learners" yang lemah dan kuat akan menghasilkan keluaran prediksi yang lebih tepat.
 
 **Kelebihan**
+
 - Boosting hadir dengan algoritme yang mudah dibaca dan ditafsirkan, membuat interpretasi prediksinya mudah ditangani.
 - Kemampuan prediksinya efisien melalui penggunaan metode kloningnya, seperti bagging atau Random Forest dan Decision Trees. 
 - Boosting adalah metode cukup handal untuk mengantisipasi over-fitting dengan mudah.
 
 **Kekurangan**
+
 - Metode ini sensitif terhadap outlier karena setiap classifier berkewajiban untuk memperbaiki kesalahan pada pendahulunya.
 - Kerugian lain adalah bahwa metode ini hampir tidak mungkin untuk ditingkatkan. Hal ini karena setiap estimator mendasarkan kebenarannya pada prediktor sebelumnya, sehingga membuatnya sulit untuk disederhanakan.
 
@@ -206,7 +230,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus = $$\(TP + TN)/(TP + TN + FP + FN)$$
+- Akurasi diukur dengan rumus = $$(TP + TN)/(TP + TN + FP + FN)$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -215,7 +239,8 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Boosting            | 0.8347107438016529 | 
 
 ### 6.2.c. **Presisi**
-- Presisi diukur dengan rumus = $$\TP / (TP + FP)$$
+
+- Presisi diukur dengan rumus = $$TP / (TP + FP)$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -224,7 +249,8 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Boosting            | 0.8173076923076923 |
 
 ### 6.2.d. **Sensitivitas / Recall** 
-- Sensitivitas diukur dengan rumus = $$\TP / (TP + FN)$$
+
+- Sensitivitas diukur dengan rumus = $$TP / (TP + FN)$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
@@ -233,6 +259,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Boosting            | 0.9883720930232558 |
 
 ## 6.3. **Area Under Curve (AUC)** 
+
 - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
 
 |                     | AUC                |
@@ -246,6 +273,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (Logistic Regression, Random Forest dan Boosting) adalah bahwa algoritma Boosting memiliki kinerja yang paling optimal diantara ketiganya. Dengan skor akurasi, presisi dan sensitivitas serta AUC yang sama dengan Logistic Regression, Boosting menghasilkan nilai MSE yang lebih kecil. Sedangkan Random Forest kinerjanya masih berada dibawah dari kedua model lainnya.
 
 ## 8. Referensi:
+
   1. Loan Eligibility Dataset. 2020. (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
   2. Loan Eligibility Machine Learning. 2020. (https://www.kaggle.com/code/vikasukani/loan-eligibility-prediction-machine-learning)
   3. Pengenalan Machine Learning dengan Python, Dios Kurniawan, M.Sc, Elex Media, Jakarta, 2021.
