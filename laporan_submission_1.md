@@ -32,9 +32,9 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        - True Negative - nilai prediksi 0, nilai aktual 0.
        - False Positive - nilai prediksi 1, nilai aktual 0
        - False Negative - nilai prediksi 0, nilai aktual 1
-       **Akurasi** - Akurasi diukur dengan rumus = (TP + TN)/(TP + TN + FP + FN)
-       **Presisi** - Presisi diukur dengan rumus = TP / (TP + FP)
-       **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = TP / (TP + FN)
+       **Akurasi** - Akurasi diukur dengan rumus = $\(TP + TN)/(TP + TN + FP + FN)$
+       **Presisi** - Presisi diukur dengan rumus = $\TP / (TP + FP)$
+       **Sensitivitas / Recall** - Sensitivitas diukur dengan rumus = $\TP / (TP + FN)$
     c. **Area Under Curve (AUC)** - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC.
 
 ## 3. Data Understanding
@@ -206,7 +206,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus = $$\(TP + TN)/(TP + TN + FP + FN)
+- Akurasi diukur dengan rumus = $$\(TP + TN)/(TP + TN + FP + FN)$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -215,7 +215,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Boosting            | 0.8347107438016529 | 
 
 ### 6.2.c. **Presisi**
-- Presisi diukur dengan rumus = $$\TP / (TP + FP)
+- Presisi diukur dengan rumus = $$\TP / (TP + FP)$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -224,7 +224,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Boosting            | 0.8173076923076923 |
 
 ### 6.2.d. **Sensitivitas / Recall** 
-- Sensitivitas diukur dengan rumus = $$\TP / (TP + FN)
+- Sensitivitas diukur dengan rumus = $$\TP / (TP + FN)$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
