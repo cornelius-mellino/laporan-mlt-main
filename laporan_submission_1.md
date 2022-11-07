@@ -4,7 +4,9 @@
 
 Proyek machine learning terapan kali ini adalah membuat satu pemodelan yang mampu memprediksi kelayakan pemberian persetujuan kredit KPR untuk pengajuan yang diproses. Beberapa variabel atau fitur menjadi elemen dari inputan pemodelan yang dibangun.
 
-- Eligibility atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Dengan solusi implementasi model machine learning diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, digunakan algoritma logistic regression yang mampu memberikan output yang mewakili keputusan disetujui (1) atau ditolak (0). 
+- Eligibility atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Dengan solusi implementasi model machine learning diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, digunakan algoritma logistic regression yang mampu memberikan output yang mewakili keputusan disetujui (1) atau ditolak (0).
+
+- 
   
 ## 2. Business Understanding
 
@@ -274,7 +276,9 @@ Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (Logistic Regres
 
 ## 8. Referensi:
 
-  1. Loan Eligibility Dataset. 2020. (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
+  [1]. P. J. Bickel and K. A. Doksum, Mathematical statistics: Basic Ideas and Selected Topics, vol. 1, 2 vols. CRC Press, 2015. 
+  
+  Loan Eligibility Dataset. 2020. (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset)
   2. Loan Eligibility Machine Learning. 2020. (https://www.kaggle.com/code/vikasukani/loan-eligibility-prediction-machine-learning)
   3. Pengenalan Machine Learning dengan Python, Dios Kurniawan, M.Sc, Elex Media, Jakarta, 2021.
   4. Scikit Learn Logistic Regression. (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
