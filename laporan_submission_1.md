@@ -37,15 +37,15 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
   
   - Mengimplementasikan pemodelan menggunakan tiga buah algoritma: Logistic Regression, Random Forest dan Boosting.
   
-  - Penilaian performa menggunakan beberapa buah metrik/metode pengukuran.
+  - Penilaian performa terhadap ketiga pemodelan yang akan dibuat menggunakan beberapa buah metrik/metode pengukuran, antara lain sebagai berikut:
 
     a. **Mean Squared Error (MSE)** 
     
     - Metrik ini mengkuadratkan perbedaan nilai antara prediksi dan aktual, lalu mengambil nilai akhir rata-ratanya (Bickel, 2015).
 
-    Rumus MSE adalah sebagai berikut:
+        - Rumus MSE adalah sebagai berikut:
 
-    $MSE = \frac{1}{n} \Sigma_{i=1}^n({y}-\hat{y})^2$
+            $MSE = \frac{1}{n} \Sigma_{i=1}^n({y}-\hat{y})^2$
 
     b. **Confusion Matrix** 
     
