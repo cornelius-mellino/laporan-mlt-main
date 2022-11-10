@@ -88,10 +88,6 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
 
     - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC. Dari Gambar 1 dapat dilihat bahwa semakin cembung kurva ROC maka menunjukkan kinerja model semakin bagus, artinya semakin banyak hasil prediksi yang tepat. Sedangkan semakin linear kurva ROC nya, maka menunjukkan kinerja model semakin jelek. Namun perlu diketahui juga apabila nilai AUC ini terlalu mendekati 1 maka menandakan kemungkinan terjadinya overfitting di dalam pemodelan yang kita buat [2].
 
-      |[<img src="/assets/images/nulltrain_before.png"/>](/assets/images/nulltrain_before.png)|
-      |:--:| 
-      | *Gambar 2. Visualisasi nilai null pada data training.* |
-
       |[<img src="/assets/images/roc_curve.png" height="300" width="300"/>](/assets/images/roc_curve.png)|
       |:--:| 
       | *Gambar 1. Kurva ROC. (Sumber: Wikipedia)* |
@@ -183,13 +179,13 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
   Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing.
   Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
 
-      |[](/assets/images/nulltrain_before.png)|
+      |[<img src="/assets/images/nulltrain_before.png"/>](/assets/images/nulltrain_before.png)|
       |:--:| 
       | *Gambar 2. Visualisasi nilai null pada data training.* |
 
   Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
 
-      |[](/assets/images/nullval_before.png)|
+      |[<img src="/assets/images/nullval_before.png"/>](/assets/images/nullval_before.png)|
       |:--:| 
       | *Gambar 3. Visualisasi nilai null pada data testing.* |
 
