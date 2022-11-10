@@ -299,20 +299,23 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Random Forest       | 0.7016611295681063 |
 | Boosting            | 0.7227574750830565 |
 
+Berikut ini adalah kurva ROC dari pemodelan algoritma Logistic Regression:
 
-      |[<img src="/assets/images/roc_logreg.png" height="300" width="300"/>](/assets/images/roc_logreg.png)|
-      |:--:| 
-      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Logistic Regression.* |
+|[<img src="/assets/images/roc_logreg.png" height="300" width="300"/>](/assets/images/roc_logreg.png)|
+|:--:| 
+| *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Logistic Regression.* |
 
+Berikut ini adalah kurva ROC dari pemodelan algoritma Random Forest:
 
-      |[<img src="/assets/images/roc_rf.png" height="300" width="300"/>](/assets/images/roc_rf.png)|
-      |:--:| 
-      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Random Forest.* |
+|[<img src="/assets/images/roc_rf.png" height="300" width="300"/>](/assets/images/roc_rf.png)|
+|:--:| 
+| *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Random Forest.* |
 
+Berikut ini adalah kurva ROC dari pemodelan algoritma Boosting:
 
-      |[<img src="/assets/images/roc_boosting.png" height="300" width="300"/>](/assets/images/roc_boosting.png)|
-      |:--:| 
-      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Boosting.* |
+|[<img src="/assets/images/roc_boosting.png" height="300" width="300"/>](/assets/images/roc_boosting.png)|
+|:--:| 
+| *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Boosting.* |
 
 
 ## 7. Kesimpulan
