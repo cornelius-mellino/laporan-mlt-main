@@ -165,8 +165,8 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
   - pendapatan pasangan (CoapplicantIncome), berisi nilai bilangan riil.
   - jumlah pinjaman (LoanAmount), berisi nilai bilangan riil.
   - tenor (Loan_Amount_Term), berisi nilai bilangan bulat.
-  - sejarah kredit (Credit_History), berisi nilai 0/1. 0 bila belum pernah mengajukan pinjaman ke institusi finansial, dan 1 bila sudah pernah mengajukan pinjaman.
-  - jenis area property (Property_Area), berisi nilai 0/1/2. 0 mewakili rural, 1 mewakili semi urban, dan 2 mewakili urban.
+  - sejarah kredit (Credit_History), berisi nilai 0/1. Nilai 0 bila belum pernah mengajukan pinjaman ke institusi finansial, dan 1 bila sudah pernah mengajukan pinjaman.
+  - jenis area property (Property_Area), berisi nilai 0/1/2. Nilai 0 mewakili rural, 1 mewakili semi urban, dan 2 mewakili urban.
   - status pengajuan pinjaman (Loan_Status), berisi Y/N. Dimana Y berarti pengajuan pinjaman disetujui, dan N berarti pengajuan pinjaman tidak disetujui.
 
 ## 4. Data Preparation
@@ -177,16 +177,19 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - Mengidentifikasi nilai null.
   Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing.
-  Berikut ini adalah visualisasi nilai null di kedua data tersebut.
+  Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
 
       |[<img src="/assets/images/null_dftrain_before.png" height="300" width="300"/>](/assets/images/null_dftrain_before.png)|
       |:--:| 
       | *Gambar 2. Visualisasi nilai null pada data training.* |
 
+  Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
 
       |[<img src="/assets/images/null_dfval_before.png" height="300" width="300"/>](/assets/images/null_dfval_before.png)|
       |:--:| 
       | *Gambar 3. Visualisasi nilai null pada data testing.* |
+
+  Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
 
 - Mengganti nilai null dengan nilai rerata atau modus.
 
