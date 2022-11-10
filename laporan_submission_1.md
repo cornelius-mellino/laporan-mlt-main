@@ -56,10 +56,12 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        - False Positive - nilai prediksi 1, nilai aktual 0
        - False Negative - nilai prediksi 0, nilai aktual 1
        
+
        | Total Poulation    | (Predicted)  Positive | (Predicted)  Negative |
        |--------------------|-----------------------|-----------------------|
        | (Actual)  Positive | True Positive (TP)    | False Negative (FN)   |
        | (Actual)  Negative | False Positive (FP)   | True Negative (TN)    |
+
 
        **Akurasi** 
        
@@ -110,16 +112,18 @@ Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani s
 Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory sebagai berikut:
 - Melihat bagian awal tabel data dengan function head().
 
-|	|Loan_ID	|Gender	|Married	|Dependents	|Education	|Self_Employed	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History	|Property_Area	|Loan_Status|
-|0	|LP001002	|Male	|No	|0	|Graduate	|No	|5849	|0.0	|NaN	|360.0	|1.0	|Urban	|Y
-|1	|LP001003	|Male	|Yes	|1	|Graduate	|No	|4583	|1508.0	|128.0	|360.0	|1.0	|Rural	N
-|2	|LP001005	|Male	|Yes	|0	|Graduate	|Yes	|3000	|0.0	|66.0	|360.0	|1.0	|Urban	Y
+|	  |Loan_ID	|Gender	|Married	|Dependents	|Education	|Self_Employed	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History	|Property_Area	|Loan_Status|
+|---|---------|-----|---|---|---------|---|-----|-----|-----|-------|-----|-------|----|
+|0	|LP001002	|Male	|No	|0	|Graduate	|No	|5849	|0.0	|NaN	|360.0	|1.0	|Urban	|Y|
+|1	|LP001003	|Male	|Yes	|1	|Graduate	|No	|4583	|1508.0	|128.0	|360.0	|1.0	|Rural	|N|
+|2	|LP001005	|Male	|Yes	|0	|Graduate	|Yes	|3000	|0.0	|66.0	|360.0	|1.0	|Urban	|Y|
 |3	|LP001006	|Male	|Yes	|0	|Not Graduate	|No	|2583	|2358.0	|120.0	|360.0	|1.0	|Urban	|Y|
 |4	|LP001008	|Male	|No	|0	|Graduate	|No	|6000	|0.0	|141.0	|360.0	|1.0	|Urban	|Y|
 
 - Melihat summary data dengan function describe().
 
-|	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History|
+|	      |ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History|
+|-------|-----------------|-------------------|-----------|-----------------|--------------|
 |count	|614.000000	|614.000000	|592.000000	|600.00000	|564.000000|
 |mean	|5403.459283	|1621.245798	|146.412162	|342.00000	|0.842199|
 |std	|6109.041673	|2926.248369	|85.587325	|65.12041	|0.364878|
@@ -132,7 +136,7 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 - Melihat struktur data dengan function info().
 
 |#    |Column              |Non-Null |Count   |Dtype | 
----  ------             --------------  -----  
+|-----|--------------------|---------|--------|------|  
 |0    |Loan_ID             |614  |non-null     |object | 
 |1    |Gender              |601  |non-null     |object | 
 |2    |Married             |611  |non-null     |object | 
