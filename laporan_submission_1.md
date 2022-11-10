@@ -56,6 +56,11 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        - False Positive - nilai prediksi 1, nilai aktual 0
        - False Negative - nilai prediksi 0, nilai aktual 1
        
+       | Total Poulation    | (Predicted)  Positive | (Predicted)  Negative |
+       |--------------------|-----------------------|-----------------------|
+       | (Actual)  Positive | True Positive (TP)    | False Negative (FN)   |
+       | (Actual)  Negative | False Positive (FP)   | True Negative (TN)    |
+
        **Akurasi** 
        
        - Akurasi diukur dengan rumus berikut:
@@ -76,11 +81,11 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
     
     c. **Area Under Curve (AUC)** 
     
-    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC.
+    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC. Dari Gambar 1 dapat dilihat bahwa semakin cembung kurva ROC maka menunjukkan kinerja model semakin bagus, artinya semakin banyak hasil prediksi yang tepat. Sedangkan semakin linear kurva ROC nya, maka menunjukkan kinerja model semakin jelek.
 
       |[<img src="/assets/images/roc_curve.png" height="300" width="300"/>](/assets/images/roc_curve.png)|
       |:--:| 
-      | *Gambar 1. Kurva ROC.* |
+      | *Gambar 1. Kurva ROC. (Sumber: Wikipedia)* |
 
 ## 3. Data Understanding
 Data yang dipakai pada proyek ini adalah Loan Eligible Dataset dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
@@ -256,7 +261,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus = $$\frac{(TP + TN)}{(TP + TN + FP + FN)}$$
+- Akurasi diukur dengan rumus: $$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -266,7 +271,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.c. **Presisi**
 
-- Presisi diukur dengan rumus = $$\frac{TP}{(TP + FP)}$$
+- Presisi diukur dengan rumus: $$Precision = \frac{TP}{(TP + FP)}$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -276,7 +281,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.d. **Sensitivitas / Recall** 
 
-- Sensitivitas diukur dengan rumus = $$\frac{TP}{(TP + FN)}$$
+- Sensitivitas diukur dengan rumus: $$Sensitivity = \frac{TP}{(TP + FN)}$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
@@ -293,6 +298,19 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Logistic Regression | 0.7227574750830565 |
 | Random Forest       | 0.7016611295681063 |
 | Boosting            | 0.7227574750830565 |
+
+      |[<img src="/assets/images/roc_logreg.png" height="300" width="300"/>](/assets/images/roc_logreg.png)|
+      |:--:| 
+      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Logistic Regression.* |
+
+      |[<img src="/assets/images/roc_rf.png" height="300" width="300"/>](/assets/images/roc_rf.png)|
+      |:--:| 
+      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Random Forest.* |
+
+      |[<img src="/assets/images/roc_boosting.png" height="300" width="300"/>](/assets/images/roc_boosting.png)|
+      |:--:| 
+      | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Boosting.* |
+
 
 ## 7. Kesimpulan
 
