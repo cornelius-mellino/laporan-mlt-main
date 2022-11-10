@@ -66,27 +66,27 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        | (Actual)  Negative | False Positive (FP)   | True Negative (TN)    |
 
 
-       **Akurasi** 
+    - **Akurasi** 
        
        - Akurasi diukur dengan rumus berikut:
 
           $accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$
        
-       **Presisi** 
+    - **Presisi** 
        
        - Presisi diukur dengan rumus berikut:
        
           $precision = \frac{TP}{(TP + FP)}$
        
-       **Sensitivitas / Recall** 
+    - **Sensitivitas / Recall** 
        
        - Sensitivitas diukur dengan rumus berikut:
        
           $sensitivity = \frac{TP}{(TP + FN)}$
     
     c. **Area Under Curve (AUC)** 
-    
-    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC. Dari Gambar 1 dapat dilihat bahwa semakin cembung kurva ROC maka menunjukkan kinerja model semakin bagus, artinya semakin banyak hasil prediksi yang tepat. Sedangkan semakin linear kurva ROC nya, maka menunjukkan kinerja model semakin jelek.
+
+    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC. Dari Gambar 1 dapat dilihat bahwa semakin cembung kurva ROC maka menunjukkan kinerja model semakin bagus, artinya semakin banyak hasil prediksi yang tepat. Sedangkan semakin linear kurva ROC nya, maka menunjukkan kinerja model semakin jelek. Namun perlu diketahui juga apabila nilai AUC ini terlalu mendekati 1 maka menandakan kemungkinan terjadinya overfitting di dalam pemodelan yang kita buat [2].
 
       |[<img src="/assets/images/roc_curve.png" height="300" width="300"/>](/assets/images/roc_curve.png)|
       |:--:| 
@@ -138,30 +138,64 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 
 - Melihat struktur data dengan function info().
 
-|#    |Column              |Count    |Non-Null|Dtype | 
-|-----|--------------------|---------|--------|------|  
-|0    |Loan_ID             |614  |non-null     |object | 
-|1    |Gender              |601  |non-null     |object | 
-|2    |Married             |611  |non-null     |object | 
-|3    |Dependents          |599  |non-null     |object | 
-|4    |Education           |614  |non-null     |object | 
-|5    |Self_Employed       |582  |non-null     |object | 
-|6    |ApplicantIncome     |614  |non-null     |int64 |  
-|7    |CoapplicantIncome   |614  |non-null     |float64 |
-|8    |LoanAmount          |592  |non-null     |float64 |
-|9    |Loan_Amount_Term    |600  |non-null     |float64 |
-|10   |Credit_History      |564  |non-null     |float64 |
-|11   |Property_Area       |614  |non-null     |object  |
-|12   |Loan_Status         |614  |non-null     |object | 
+|#    |Column              |Non-Null Count    |Dtype  | 
+|-----|--------------------|------------------|-------|  
+|0    |Loan_ID             |614  non-null     |object | 
+|1    |Gender              |601  non-null     |object | 
+|2    |Married             |611  non-null     |object | 
+|3    |Dependents          |599  non-null     |object | 
+|4    |Education           |614  non-null     |object | 
+|5    |Self_Employed       |582  non-null     |object | 
+|6    |ApplicantIncome     |614  non-null     |int64 |  
+|7    |CoapplicantIncome   |614  non-null     |float64 |
+|8    |LoanAmount          |592  non-null     |float64 |
+|9    |Loan_Amount_Term    |600  non-null     |float64 |
+|10   |Credit_History      |564  non-null     |float64 |
+|11   |Property_Area       |614  non-null     |object  |
+|12   |Loan_Status         |614  non-null     |object | 
+
+- Dari pemeriksaan data yang dilakukan diatas dapat kita ketahui struktur data berisi informasi:
+  - nomor id pengajuan pinjaman (Loan_ID), berupa rangkaian kode.
+  - jenis kelamin (Gender), berisi nilai Male/Female. 
+  - status menikah (Married), berisi nilai Yes/No.
+  - jumlah tanggungan (Dependents), berisi bilangan bulat (0, 1, 2, 3, dst).
+  - pendidikan terakhir (Educations), berisi Graduate/Not Graduate.
+  - status pekerjaan (Self_Employed), berisi Yes/No.
+  - pendapatan applicant (ApplicantIncome), berisi nilai bilangan riil.
+  - pendapatan pasangan (CoapplicantIncome), berisi nilai bilangan riil.
+  - jumlah pinjaman (LoanAmount), berisi nilai bilangan riil.
+  - tenor (Loan_Amount_Term), berisi nilai bilangan bulat.
+  - sejarah kredit (Credit_History), berisi nilai 0/1. 0 bila belum pernah mengajukan pinjaman ke institusi finansial, dan 1 bila sudah pernah mengajukan pinjaman.
+  - jenis area property (Property_Area), berisi nilai 0/1/2. 0 mewakili rural, 1 mewakili semi urban, dan 2 mewakili urban.
+  - status pengajuan pinjaman (Loan_Status), berisi Y/N. Dimana Y berarti pengajuan pinjaman disetujui, dan N berarti pengajuan pinjaman tidak disetujui.
 
 ## 4. Data Preparation
 Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
 
+- Data splitting
+  Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val.
+
 - Mengidentifikasi nilai null.
+  Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing.
+  Berikut ini adalah visualisasi nilai null di kedua data tersebut.
+
+      |[<img src="/assets/images/null_dftrain_before.png" height="300" width="300"/>](/assets/images/null_dftrain_before.png)|
+      |:--:| 
+      | *Gambar 2. Visualisasi nilai null pada data training.* |
+
+
+      |[<img src="/assets/images/null_dfval_before.png" height="300" width="300"/>](/assets/images/null_dfval_before.png)|
+      |:--:| 
+      | *Gambar 3. Visualisasi nilai null pada data testing.* |
+
 - Mengganti nilai null dengan nilai rerata atau modus.
+
 - Mengubah nilai kategorikal menjadi nilai numerikal.
+
 - Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.
+
 - Memeriksa masing-masing fitur dengan visualisasi histogram atau scatter plot.
+
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
@@ -329,8 +363,6 @@ $$Sensitivity = \frac{TP}{(TP + FN)}$$
 | Boosting            | 0.9883720930232558 |
 
 ## 6.3. **Area Under Curve (AUC)** 
-
-- Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics). Namun perlu diketahui juga apabila nilai AUC ini terlalu mendekati 1 maka menandakan kemungkinan terjadinya overfitting di dalam pemodelan yang kita buat [2].
 
 - Berikut ini adalah nilai AUC yang dihasilkan dengan memanggil fungsi roc_auc_score() dari library sklearn.metrics.
 
