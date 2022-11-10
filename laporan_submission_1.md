@@ -43,20 +43,22 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
     
     - Metrik ini mengkuadratkan perbedaan nilai antara prediksi dan aktual, lalu mengambil nilai akhir rata-ratanya (Bickel, 2015).
 
-        - Rumus MSE adalah sebagai berikut:
+       - Rumus MSE adalah sebagai berikut:
 
             $MSE = \frac{1}{n} \Sigma_{i=1}^n({y}-\hat{y})^2$
 
     b. **Confusion Matrix** 
     
     - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
-
-       - True Positive - nilai prediksi 1, nilai aktual 1.
-       - True Negative - nilai prediksi 0, nilai aktual 0.
-       - False Positive - nilai prediksi 1, nilai aktual 0
-       - False Negative - nilai prediksi 0, nilai aktual 1
        
-       - Berikut ini adalah pemetaan dari confusion matrix:
+       |                | Nilai Prediksi | Nilai Aktual |
+       |----------------|----------------|--------------|
+       | True Positive  | 1              | 1            |
+       | False Positive | 0              | 0            |
+       | False Negative | 1              | 0            |
+       | True Negative  | 0              | 1            |
+       
+    - Berikut ini adalah pemetaan dari confusion matrix:
 
        | Total Poulation    | (Predicted)  Positive | (Predicted)  Negative |
        |--------------------|-----------------------|-----------------------|
@@ -136,7 +138,7 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 
 - Melihat struktur data dengan function info().
 
-|#    |Column              |Non-Null |Count   |Dtype | 
+|#    |Column              |Count    |Non-Null|Dtype | 
 |-----|--------------------|---------|--------|------|  
 |0    |Loan_ID             |614  |non-null     |object | 
 |1    |Gender              |601  |non-null     |object | 
@@ -278,15 +280,6 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | test_mse  | 0.165289            | 0.153723      | 0.14803  |
 
 ### 6.2.a. **Confusion Matrix**
-
-- Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
-       
-|                | Nilai Prediksi | Nilai Aktual |
-|----------------|----------------|--------------|
-| True Positive  | 1              | 1            |
-| False Positive | 0              | 0            |
-| False Negative | 1              | 0            |
-| True Negative  | 0              | 1            |
 
 - Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
