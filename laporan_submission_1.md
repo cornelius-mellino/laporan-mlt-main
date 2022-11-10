@@ -78,7 +78,7 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
     
     - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC.
 
-      ![Gambar 1. Kurva ROC.](/assets/images/roc_curve.png "Gambar 1. Kurva ROC.")
+      ![Gambar 1. Kurva ROC.](/assets/images/roc_curve.png "Gambar 1. Kurva ROC."){width=50px}
 
 ## 3. Data Understanding
 Data yang dipakai pada proyek ini adalah Loan Eligible Dataset dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
