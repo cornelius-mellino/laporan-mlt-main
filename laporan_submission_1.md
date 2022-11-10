@@ -30,7 +30,7 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
 
 - Mempercepat pengajuan kredit dengan mengimplementasikan pemodelan machine learning berbasiskan beberapa algoritma pemodelan, antara lain logistic regression, random forest dan boosting. Ketiga algoritma tersebut akan diperbandingkan kinerjanya dan akan diulas kelebihan maupun kekurangannya.
 
-- Mencari algoritma pemodelan yang memiliki tingkat akurasi paling tinggi, yang dapat membantu institusi pemberi layanan kredit dalam pemberian persetujuan kepada pengajuan yang diajukan oleh para nasabah. Hal ini juga tentunya akan membantu menekan risiko kerugian yang mungkin terjadi di masa depan nantinya.
+- Mencari algoritma pemodelan yang memiliki tingkat akurasi paling tinggi, serta memiliki nilai optimal untuk aspek penilaian lainnya yang dapat membantu institusi pemberi layanan kredit dalam pemberian persetujuan kepada pengajuan yang diajukan oleh para nasabah. Hal ini juga tentunya akan membantu menekan risiko kerugian yang mungkin terjadi di masa depan nantinya.
 
 ### 2.3. Solution specifications
   Implementasi pemodelan machine learning untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
@@ -109,8 +109,43 @@ Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani s
 
 Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory sebagai berikut:
 - Melihat bagian awal tabel data dengan function head().
+
+|	|Loan_ID	|Gender	|Married	|Dependents	|Education	|Self_Employed	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History	|Property_Area	|Loan_Status|
+|0	|LP001002	|Male	|No	|0	|Graduate	|No	|5849	|0.0	|NaN	|360.0	|1.0	|Urban	|Y
+|1	|LP001003	|Male	|Yes	|1	|Graduate	|No	|4583	|1508.0	|128.0	|360.0	|1.0	|Rural	N
+|2	|LP001005	|Male	|Yes	|0	|Graduate	|Yes	|3000	|0.0	|66.0	|360.0	|1.0	|Urban	Y
+|3	|LP001006	|Male	|Yes	|0	|Not Graduate	|No	|2583	|2358.0	|120.0	|360.0	|1.0	|Urban	|Y|
+|4	|LP001008	|Male	|No	|0	|Graduate	|No	|6000	|0.0	|141.0	|360.0	|1.0	|Urban	|Y|
+
 - Melihat summary data dengan function describe().
+
+|	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History|
+|count	|614.000000	|614.000000	|592.000000	|600.00000	|564.000000|
+|mean	|5403.459283	|1621.245798	|146.412162	|342.00000	|0.842199|
+|std	|6109.041673	|2926.248369	|85.587325	|65.12041	|0.364878|
+|min	|150.000000	|0.000000	|9.000000	|12.00000	|0.000000|
+|25%	|2877.500000	|0.000000	|100.000000	|360.00000 |1.000000|
+|50%	|3812.500000	|1188.500000	|128.000000	|360.00000	|1.000000|
+|75%	|5795.000000	|2297.250000	|168.000000	|360.00000	|1.000000|
+|max	|81000.000000	|41667.000000	|700.000000	|480.00000	|1.000000|
+
 - Melihat struktur data dengan function info().
+
+|#    |Column              |Non-Null |Count   |Dtype | 
+---  ------             --------------  -----  
+|0    |Loan_ID             |614  |non-null     |object | 
+|1    |Gender              |601  |non-null     |object | 
+|2    |Married             |611  |non-null     |object | 
+|3    |Dependents          |599  |non-null     |object | 
+|4    |Education           |614  |non-null     |object | 
+|5    |Self_Employed       |582  |non-null     |object | 
+|6    |ApplicantIncome     |614  |non-null     |int64 |  
+|7    |CoapplicantIncome   |614  |non-null     |float64 |
+|8    |LoanAmount          |592  |non-null     |float64 |
+|9    |Loan_Amount_Term    |600  |non-null     |float64 |
+|10   |Credit_History      |564  |non-null     |float64 |
+|11   |Property_Area       |614  |non-null     |object  |
+|12   |Loan_Status         |614  |non-null     |object | 
 
 ## 4. Data Preparation
 Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
@@ -261,7 +296,9 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.b. **Akurasi** 
   
-- Akurasi diukur dengan rumus: $$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
+- Akurasi diukur dengan rumus:
+
+$$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -271,7 +308,9 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.c. **Presisi**
 
-- Presisi diukur dengan rumus: $$Precision = \frac{TP}{(TP + FP)}$$
+- Presisi diukur dengan rumus:
+
+$$Precision = \frac{TP}{(TP + FP)}$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -281,7 +320,9 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ### 6.2.d. **Sensitivitas / Recall** 
 
-- Sensitivitas diukur dengan rumus: $$Sensitivity = \frac{TP}{(TP + FN)}$$
+- Sensitivitas diukur dengan rumus:
+
+$$Sensitivity = \frac{TP}{(TP + FN)}$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
@@ -291,7 +332,9 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ## 6.3. **Area Under Curve (AUC)** 
 
-- Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics).
+- Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC (Receiver Operating Characteristics). Namun perlu diketahui juga apabila nilai AUC ini terlalu mendekati 1 maka menandakan kemungkinan terjadinya overfitting di dalam pemodelan yang kita buat [2].
+
+- Berikut ini adalah nilai AUC yang dihasilkan dengan memanggil fungsi roc_auc_score() dari library sklearn.metrics.
 
 |                     | AUC                |
 |---------------------|--------------------|
@@ -299,19 +342,21 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | Random Forest       | 0.7016611295681063 |
 | Boosting            | 0.7227574750830565 |
 
-Berikut ini adalah kurva ROC dari pemodelan algoritma Logistic Regression:
+- Sedangkan berikut ini adalah visualisasi kurva ROC sekaligus menghitung skor AUC nya.
+
+- Berikut ini adalah kurva ROC dari pemodelan algoritma Logistic Regression. Skor AUC yang dihasilkan disini tidak terlalu memuaskan, karena hanya menghasilkan angka 0.6820.
 
 |[<img src="/assets/images/roc_logreg.png" height="300" width="300"/>](/assets/images/roc_logreg.png)|
 |:--:| 
 | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Logistic Regression.* |
 
-Berikut ini adalah kurva ROC dari pemodelan algoritma Random Forest:
+- Berikut ini adalah kurva ROC dari pemodelan algoritma Random Forest. Dari bentuk kurva terlihat bahwa kurva ROC ini memang paling melengkung dibandingkan dengan kurva dari kedua algoritma lainnya. Ini terkonfirmasi dari nilai AUC-nya, yaitu sekitar 0.7892.
 
 |[<img src="/assets/images/roc_rf.png" height="300" width="300"/>](/assets/images/roc_rf.png)|
 |:--:| 
 | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Random Forest.* |
 
-Berikut ini adalah kurva ROC dari pemodelan algoritma Boosting:
+- Berikut ini adalah kurva ROC dari pemodelan algoritma Boosting. Pada pemodelan ini skor AUC yang dihasilkan ada di urutan kedua setelah pemodelan Random Forest, angka skor yang dihasilkan adalah 0.7088.
 
 |[<img src="/assets/images/roc_boosting.png" height="300" width="300"/>](/assets/images/roc_boosting.png)|
 |:--:| 
