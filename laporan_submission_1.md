@@ -45,7 +45,7 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
 
     Rumus MSE adalah sebagai berikut:
 
-    $MSE = \frac{1}{n} \sum_{i=1}^n \sqr(Y_i - Y^_i)$
+    $MSE = \frac{1}{n} \Sigma_{i=1}^n({y}-\hat{y})^2$
 
     b. **Confusion Matrix** 
     
