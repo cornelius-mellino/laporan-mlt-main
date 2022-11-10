@@ -56,6 +56,7 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
        - False Positive - nilai prediksi 1, nilai aktual 0
        - False Negative - nilai prediksi 0, nilai aktual 1
        
+       - Berikut ini adalah pemetaan dari confusion matrix:
 
        | Total Poulation    | (Predicted)  Positive | (Predicted)  Negative |
        |--------------------|-----------------------|-----------------------|
