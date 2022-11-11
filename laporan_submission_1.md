@@ -174,7 +174,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - Data splitting
 
-  Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val.
+  Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val. Pada tahapan ini kita membagi data dengan porsi training sekitar 70% dan porsi testing sekitar 30%.
 
 - Mengidentifikasi nilai null.
 
@@ -230,8 +230,28 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 6. Heatmap pemetaan korelasi dari struktur data training.* |
 
+- Memotong fitur Loan_ID. 
+
+  Fitur ini kita potong karena memang tidak akan dipakai dalam proses training modelnya.
+
 - Memeriksa masing-masing fitur dengan visualisasi histogram atau scatter plot.
 
+  Pada tahapan ini kita memeriksa karakteristik masing-masing fitur dengan memakai alat bantu diagram histogram dan scatter plot. Diagram histogram membantu kita melihat sebaran data, sedangkan scatter plot membantu kita melihat pola data dan outlier yang muncul.
+
+  - Periksa data Jenis Kelamin / Gender.
+
+  Berikut ini adalah nilai dari variabel atau fitur Gender.
+
+  |Gender|Value|Count|
+  |------|-----|-----|
+  |Female|0    |502  |
+  |Male  |1    |112  |
+
+  Dari Gambar 7 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan adalah kaum pria.
+
+|[<img src="/assets/images/hist_gender.png"/>](/assets/images/hist_gender.png)|
+|:--:| 
+| *Gambar 7. Histogram data Gender.* |  
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
