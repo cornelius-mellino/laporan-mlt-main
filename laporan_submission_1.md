@@ -238,7 +238,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
   Pada tahapan ini kita memeriksa karakteristik masing-masing fitur dengan memakai alat bantu diagram histogram dan scatter plot. Diagram histogram membantu kita melihat sebaran data, sedangkan scatter plot membantu kita melihat pola data dan outlier yang muncul.
 
-  - Periksa data Jenis Kelamin / Gender.
+- Periksa data Jenis Kelamin / Gender.
 
   Berikut ini adalah nilai dari variabel atau fitur Gender.
 
@@ -253,7 +253,8 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 7. Histogram data Gender.* |  
 
-  - Periksa data Status Pernikahan / Married
+
+- Periksa data Status Pernikahan / Married
 
   Berikut ini adalah nilai dari variabel atau fitur Married.
 
@@ -267,6 +268,38 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |[<img src="/assets/images/hist_married.png"/>](/assets/images/hist_married.png)|
 |:--:| 
 | *Gambar 8. Histogram data Married.* | 
+
+- Periksa data Jumlah Tanggungan / Dependents
+
+  Berikut ini adalah nilai dari variabel atau fitur Dependents.
+
+  |Dependents|Count|
+  |-------|-----|
+  |0      |360  |
+  |1      |102  |
+  |2      |101  |
+  |3      | 51  |
+
+  Dari Gambar 9 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan belum memiliki anak. Sedangkan yang memiliki anak, rata-rata berjumlah 1 hingga 2 orang.
+
+|[<img src="/assets/images/hist_dependents.png"/>](/assets/images/hist_dependents.png)|
+|:--:| 
+| *Gambar 9. Histogram data Dependents.* | 
+
+- Periksa data Pendidikan Terakhir / Education
+
+  Berikut ini adalah nilai dari variabel atau fitur Education.
+
+  |Education|Value|Count|
+  |-------------|-----|-----|
+  |Graduate     |0    |480  |
+  |Not Graduate |1    |134  |
+
+  Dari Gambar 10 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan adalah lulusan pendidikan tinggi.
+
+|[<img src="/assets/images/hist_education.png"/>](/assets/images/hist_education.png)|
+|:--:| 
+| *Gambar 10. Histogram data Education.* | 
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
