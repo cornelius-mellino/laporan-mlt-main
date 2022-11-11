@@ -539,7 +539,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
   
 - Akurasi diukur dengan rumus:
 
-$$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
+   $$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -551,7 +551,7 @@ $$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
 
 - Presisi diukur dengan rumus:
 
-$$Precision = \frac{TP}{(TP + FP)}$$
+   $$Precision = \frac{TP}{(TP + FP)}$$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -563,7 +563,7 @@ $$Precision = \frac{TP}{(TP + FP)}$$
 
 - Sensitivitas diukur dengan rumus:
 
-$$Sensitivity = \frac{TP}{(TP + FN)}$$
+   $$Sensitivity = \frac{TP}{(TP + FN)}$$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
