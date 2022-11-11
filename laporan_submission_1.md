@@ -184,13 +184,13 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 2. Visualisasi nilai null pada data training.* |
 
-  Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
+- Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
 
 |[<img src="/assets/images/nullval_before.png"/>](/assets/images/nullval_before.png)|
 |:--:| 
 | *Gambar 3. Visualisasi nilai null pada data testing.* |
 
-  Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
+- Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
 
 - Mengganti nilai null dengan nilai rerata atau modus.
 
@@ -200,11 +200,11 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
   Modus: Gender, Married, Dependents, Self_Employed, Credit_History
   Mean: LoanAmount, Loan_Amout_Term
 
+  Gambar 4 merupakan visualisasi dari data training setelah proses penggantian nilai null / NA. Sedangkan Gambar 5 merupakan visualisasi dari data testing setelah proses yang sama.
+
 |[<img src="/assets/images/nulltrain_after.png"/>](/assets/images/nulltrain_after.png)|
 |:--:| 
 | *Gambar 4. Visualisasi nilai null pada data training.* |
-
-  Gambar 4 merupakan visualisasi dari data training setelah proses penggantian nilai null / NA. Sedangkan Gambar 5 merupakan visualisasi dari data testing setelah proses yang sama.
 
 |[<img src="/assets/images/nullval_after.png"/>](/assets/images/nullval_after.png)|
 |:--:| 
@@ -212,16 +212,23 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - Mengubah nilai kategorikal menjadi nilai numerikal.
 
-  Setelah nilai null atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di library sklearn.preprocessing. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
+  Setelah nilai null atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di library sklearn.preprocessing. Langkah pengubahan ke nilai numerikal ini berguna untuk beberapa algoritma pemodelan yang hanya dapat memproses data dalam bentuk numerik, supaya data kita aman dan dapat dipakai secara umum oleh ketiga algoritma yang akan kita coba maka lebih baik kita lakukan langkah ini. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
 
-  	Loan_ID	Gender	Married	Dependents	Education	Self_Employed	ApplicantIncome	CoapplicantIncome	LoanAmount	Loan_Amount_Term	Credit_History	Property_Area	Loan_Status
-0	LP001002	1	0	0	0	0	5849	0.0	146.412162	360.0	1.0	2	1
-1	LP001003	1	1	1	0	0	4583	1508.0	128.000000	360.0	1.0	0	0
-2	LP001005	1	1	0	0	1	3000	0.0	66.000000	360.0	1.0	2	1
-3	LP001006	1	1	0	1	0	2583	2358.0	120.000000	360.0	1.0	2	1
-4	LP001008	1	0	0	0	0	6000	0.0	141.000000	360.0	1.0	2	1
+|  	|Loan_ID	|Gender|Married|Dependents|Education|Self_Employed|ApplicantIncome|CoapplicantIncome|LoanAmount	|Loan_Amount_Term|Credit_History|Property_Area|Loan_Status|
+|---|---------|------|-------|----------|---------|-------------|---------------|-----------------|-----------|----------------|--------------|-------------|-----------|
+|0	|LP001002	|1	|0	|0	|0	|0	|5849	|0.0	|146.412162	|360.0	|1.0	|2	|1|
+|1	|LP001003	|1	|1	|1	|0	|0	|4583	|1508.0	|128.000000	|360.0	|1.0	|0	|0|
+|2	|LP001005	|1	|1	|0	|0	|1	|3000	|0.0	|66.000000	|360.0	|1.0	|2	|1|
+|3	|LP001006	|1	|1	|0	|1	|0	|2583	|2358.0	|120.000000	|360.0	|1.0	|2	|1|
+|4	|LP001008	|1	|0	|0	|0	|0	|6000	|0.0	|141.000000	|360.0	|1.0	|2	|1|
 
 - Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.
+
+  Setelah mengubah nilai kategorikal kita coba melihat sedikit keterkaitan atau korelasi antar-fitur yang ada di dalam struktur data kita. Hal ini dapat dilakukan dengan mudah menggunakan fungsi heatmap() pada library seaborn, serta fungsi corr() dari dataframe di library panda. Berikut pada Gambar 6 adalah gambar heatmap pemetaan korelasi dari struktur data training. Terlihat pada gambar tersebut korelasi yang cukup signifikan terjadi antara LoanAmount dengan ApplicantIncome serta yang lebih penting adalah Loan_Status dengan Credit_History. Skor positif menunjukkan korelasi dengan arah positif atau berbending lurus, sedangkan skor negatif menunjukan hubungan yang berbanding terbalik.
+
+|[<img src="/assets/images/heatmap.png"/>](/assets/images/heatmap.png)|
+|:--:| 
+| *Gambar 6. Heatmap pemetaan korelasi dari struktur data training.* |
 
 - Memeriksa masing-masing fitur dengan visualisasi histogram atau scatter plot.
 
