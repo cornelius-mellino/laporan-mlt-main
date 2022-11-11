@@ -172,11 +172,11 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 ## 4. Data Preparation
 Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
 
-- Data splitting
+- **Data splitting**
 
   Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val. Pada tahapan ini kita membagi data dengan porsi training sekitar 70% dan porsi testing sekitar 30%.
 
-- Mengidentifikasi nilai null.
+- **Mengidentifikasi nilai null.**
 
   Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing. Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
 
@@ -192,7 +192,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 3. Visualisasi nilai null pada data testing.* |
 
-- Mengganti nilai null dengan nilai rerata atau modus.
+- **Mengganti nilai null dengan nilai rerata atau modus.**
 
   Terdapat beberapa cara dalam berurusan dengan nilai null atau NA (Not Available). Pada penelitian ini kami memilih dua cara yaitu penggunaan nilai terbanyak (modus) untuk mengisi NA yang ada di data kategorikal dan penggunaan nilai rerata (mean) untuk mengisi NA yang ada di data numerikal.
   
@@ -210,7 +210,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 5. Visualisasi nilai null pada data testing.* |
 
-- Mengubah nilai kategorikal menjadi nilai numerikal.
+- **Mengubah nilai kategorikal menjadi nilai numerikal.**
 
   Setelah nilai null atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di library sklearn.preprocessing. Langkah pengubahan ke nilai numerikal ini berguna untuk beberapa algoritma pemodelan yang hanya dapat memproses data dalam bentuk numerik, supaya data kita aman dan dapat dipakai secara umum oleh ketiga algoritma yang akan kita coba maka lebih baik kita lakukan langkah ini. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
 
@@ -222,7 +222,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |3	|LP001006	|1	|1	|0	|1	|0	|2583	|2358.0	|120.000000	|360.0	|1.0	|2	|1|
 |4	|LP001008	|1	|0	|0	|0	|0	|6000	|0.0	|141.000000	|360.0	|1.0	|2	|1|
 
-- Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.
+- **Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.**
 
   Setelah mengubah nilai kategorikal kita coba melihat sedikit keterkaitan atau korelasi antar-fitur yang ada di dalam struktur data kita. Hal ini dapat dilakukan dengan mudah menggunakan fungsi heatmap() pada library seaborn, serta fungsi corr() dari dataframe di library panda. Berikut pada Gambar 6 adalah gambar heatmap pemetaan korelasi dari struktur data training. Terlihat pada gambar tersebut korelasi yang cukup signifikan terjadi antara LoanAmount dengan ApplicantIncome serta yang lebih penting adalah Loan_Status dengan Credit_History. Skor positif menunjukkan korelasi dengan arah positif atau berbending lurus, sedangkan skor negatif menunjukan hubungan yang berbanding terbalik.
 
@@ -230,7 +230,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 6. Heatmap pemetaan korelasi dari struktur data training.* |
 
-- Memotong fitur Loan_ID. 
+- **Memotong fitur Loan_ID.**
 
   Fitur ini kita potong karena memang tidak akan dipakai dalam proses training modelnya.
 
@@ -238,7 +238,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
   Pada tahapan ini kita memeriksa karakteristik masing-masing fitur dengan memakai alat bantu diagram histogram dan scatter plot. Diagram histogram membantu kita melihat sebaran data, sedangkan scatter plot membantu kita melihat pola data dan outlier yang muncul.
 
-- Periksa data Jenis Kelamin / Gender.
+- **Periksa data Jenis Kelamin / Gender.**
 
   Berikut ini adalah nilai dari variabel atau fitur Gender.
 
@@ -254,7 +254,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 | *Gambar 7. Histogram data Gender.* |  
 
 
-- Periksa data Status Pernikahan / Married
+- **Periksa data Status Pernikahan / Married.**
 
   Berikut ini adalah nilai dari variabel atau fitur Married.
 
@@ -269,7 +269,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 8. Histogram data Married.* | 
 
-- Periksa data Jumlah Tanggungan / Dependents
+- **Periksa data Jumlah Tanggungan / Dependents.**
 
   Berikut ini adalah nilai dari variabel atau fitur Dependents.
 
@@ -286,7 +286,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 9. Histogram data Dependents.* | 
 
-- Periksa data Pendidikan Terakhir / Education
+- **Periksa data Pendidikan Terakhir / Education.**
 
   Berikut ini adalah nilai dari variabel atau fitur Education.
 
@@ -301,7 +301,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 10. Histogram data Education.* | 
 
-- Periksa data Status Pekerjaan / Self_Employed
+- **Periksa data Status Pekerjaan / Self_Employed.**
 
   Berikut ini adalah nilai dari variabel atau fitur Education.
 
@@ -316,7 +316,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 11. Histogram data Self_Employed.* | 
 
-- Periksa data Pendapatan Applicant / ApplicantIncome
+- **Periksa data Pendapatan Applicant / ApplicantIncome.**
 
   Dari Gambar 12 terlihat bahwa kebanyakan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil applicant yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga outliers. Entitas outliers ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
 
@@ -343,7 +343,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 15. Scatter plot data ApplicantIncome setelah pemotongan outliers.* |   
 
-- Periksa data Pendapatan Pasangan Applicant / CoapplicantIncome
+- **Periksa data Pendapatan Pasangan Applicant / CoapplicantIncome.**
 
   Dari Gambar 16 terlihat bahwa kebanyakan pasangan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil pasangan applicant yang memiliki pendapatan sangat tinggi sampai USD 40.000 per tahun. Ini juga terpaparkan pada Gambar 17 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Outliers yang muncul disini juga akan kita potong dari data.
 
@@ -365,7 +365,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 18. Scatter plot data CoapplicantIncome setelah pemotongan outliers.* |   
 
-- Periksa data Jumlah Pinjaman / LoanAmount
+- **Periksa data Jumlah Pinjaman / LoanAmount.**
 
   Dari Gambar 19 dan 20 terlihat bahwa jumlah pinjaman yang diambil kebanyakan berkisar antara USD 100-200K. Sedangkan nilai maksimal yang diambil sekitar USD 600K.
 
@@ -376,6 +376,34 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |[<img src="/assets/images/scatter_loan_amount.png"/>](/assets/images/scatter_loan_amount.png)|
 |:--:| 
 | *Gambar 20. Scatter plot data LoanAmount.* |  
+
+- **Periksa data Tenor Pinjaman / Loan_Amount_Term.**
+
+  Dari Gambar 21 dan 22 terlihat bahwa tenor pinjaman yang diambil kebanyakan adalah 360 bulan atau 30 tahun cicilan KPR.
+
+|[<img src="/assets/images/hist_tenor.png"/>](/assets/images/hist_tenor.png)|
+|:--:| 
+| *Gambar 21. Histogram data Loan_Amount_Term.* | 
+
+|[<img src="/assets/images/scatter_tenor.png"/>](/assets/images/scatter_tenor.png)|
+|:--:| 
+| *Gambar 22. Scatter plot data Loan_Amount_Term.* |  
+
+- **Periksa data Sejarah Kredit / Credit_History.**
+
+  Dari Gambar 23 terlihat bahwa mayoritas nasabah yang mengajukan sudah pernah mengambil kredit sebelumnya.
+
+|[<img src="/assets/images/hist_credit_history.png"/>](/assets/images/hist_credit_history.png)|
+|:--:| 
+| *Gambar 23. Histogram data Credit_History.* | 
+
+- **Periksa data Area Properti / Property_Area.**
+
+  Dari Gambar 24 terlihat bahwa mayoritas properti yang di-KPR-kan ada di area Semi Urban, sedangkan properti di area Rural dan Urban jumlahnya seimbang.
+
+|[<img src="/assets/images/hist_property_area.png"/>](/assets/images/hist_property_area.png)|
+|:--:| 
+| *Gambar 24. Histogram data Property_Area.* | 
 
 
 ## 5. Modeling
