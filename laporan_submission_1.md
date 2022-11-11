@@ -330,7 +330,9 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 13. Scatter plot data ApplicantIncome.* | 
 
+
   Setelah outliers kita potong di ambang batas USD 30.000, maka diagram histogram dan scatter plotnya akan menjadi seperti Gambar 14 dan 15 berikut ini.
+
 
 |[<img src="/assets/images/hist_applicant_income_after.png"/>](/assets/images/hist_applicant_income_after.png)|
 |:--:| 
@@ -340,6 +342,33 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |[<img src="/assets/images/scatter_applicant_income_after.png"/>](/assets/images/scatter_applicant_income_after.png)|
 |:--:| 
 | *Gambar 15. Scatter plot data ApplicantIncome setelah pemotongan outliers.* |   
+
+- Periksa data Pendapatan Pasangan Applicant / CoapplicantIncome
+
+  Dari Gambar 12 terlihat bahwa kebanyakan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil applicant yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga outliers. Entitas outliers ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
+
+
+|[<img src="/assets/images/hist_coapplicant_income_before.png"/>](/assets/images/hist_coapplicant_income_before.png)|
+|:--:| 
+| *Gambar 16. Histogram data CoapplicantIncome.* | 
+
+
+|[<img src="/assets/images/scatter_coapplicant_income_before.png"/>](/assets/images/scatter_coapplicant_income_before.png)|
+|:--:| 
+| *Gambar 17. Scatter plot data CoapplicantIncome.* | 
+
+
+  Setelah outliers kita potong di ambang batas USD 30.000, maka diagram histogram dan scatter plotnya akan menjadi seperti Gambar 14 dan 15 berikut ini.
+
+
+|[<img src="/assets/images/hist_coapplicant_income_after.png"/>](/assets/images/hist_coapplicant_income_after.png)|
+|:--:| 
+| *Gambar 18. Histogram data CoapplicantIncome setelah pemotongan outliers.* | 
+
+
+|[<img src="/assets/images/scatter_coapplicant_income_after.png"/>](/assets/images/scatter_coapplicant_income_after.png)|
+|:--:| 
+| *Gambar 19. Scatter plot data CoapplicantIncome setelah pemotongan outliers.* |   
 
 
 ## 5. Modeling
