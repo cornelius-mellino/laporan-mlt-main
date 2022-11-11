@@ -431,20 +431,18 @@ Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan al
 Berikut code dari model Logistic Regression dalam Python.
 
 ```python
-from sklearn.datasets import make_classification
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import make_pipeline
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-
 pipe = make_pipeline(StandardScaler(), LogisticRegression(solver = "lbfgs"))
 pipe.fit(X_train, y_train)  # apply scaling on training data
-Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('logisticregression', LogisticRegression(solver = "lbfgs"))])
-
 pipe.score(X_val, y_val) 
 ```
+
 Pada code diatas, kita menggunakan teknik pipelining dimana sebelum data masuk ke model LogisticRegression(), data di-scaling terlebih dahulu dengan metode standar. Hal ini agar data memiliki memiliki jarak yang lebih pendek. Scaling perlu dilakukan bila nilai dari fitur-fitur yang ada memiliki rentang yang teramat jauh satu sama lain. Terkadang bila kita tidak melakukan scaling, model kita akan mengalami crash secara komputasional.
+
+Pertama-tama kita membuat object pipe dengan fungsi make_pipeline() dan memasukkan parameter-parameter berupa object StandardScaler() serta LogisticRegression(). Jadi dimasukkan object scaler dan modelnya. Untuk object modelnya, kita menggunakan solver default yaitu "lbfgs". Kelas LogisticRegression memiliki beberapa solver, antara lain: newton-cg, lbfgs, liblinear, sag, saga. Kita memilih lbfgs mengingat ukuran data yang tidak terlalu besar.
+
+Langkah berikutnya kita lakukan training pada pemodelan ini. Namun berbeda dengan training langsung, training menggunakan teknik pipeline ini yang kita gunakan adalah object pipe-nya, sedangkan fungsi yang dipanggil untuk menjalankan training namanya tetap sama yaitu fungsi fit(). Parameter yang dimasukkan adalah data X_train yang berisi data dengan berbagai fitur / variabel independen, serta y_train yang berisi dependen variabel yang menjadi nilai acuan aktual.
+
+Langkah terakhir adalah mencetak score dari hasil training dengan pemanggilan fungsi pipe.score() dan memasukkan parameter data testing X_val yang berisi variabel independen, dan y_val yang berisi variabel dependennya.
 
 ### 5.2. Random Forest
 Pemodelan kedua yang dipilih adalah Random Forest. Algoritma ini merupakan salah satu algoritma Ensemble dimana konsepnya adalah mengkombinasikan hasil dari beberapa algoritma yang dijalankan untuk mencari hasil yang optimal. Di Random Forest, beberapa Decision Trees dibuat kemudian untuk masalah klasifikasi, kelas-kelas yang banyak terpilih oleh semua Decision Trees akan dipilih, sedangkan untuk masalah regresi dipilih nilai rata-rata outputnya. Algoritma ini cenderung lebih baik daripada algoritma Decision Trees tunggal, dan mampu memperbaiki masalah overfittingnya juga.
@@ -469,15 +467,29 @@ Pemodelan kedua yang dipilih adalah Random Forest. Algoritma ini merupakan salah
 Berikut code dari model Random Forest dalam Python.
 
 ```python
-from sklearn.ensemble import RandomForestRegressor
- 
-# buat model prediksi
 RF = RandomForestRegressor(n_estimators=50, max_depth=12, random_state=55, n_jobs=-1)
 RF.fit(X_train, y_train)
- 
-models.loc['train_mse','Random Forest'] = mean_squared_error(y_pred=RF.predict(X_train), y_true=y_train)       
-models.loc['test_mse','Random Forest'] = mean_squared_error(y_pred=RF.predict(X_val), y_true=y_val) 
-```
+ ```
+
+Pada pemodelan dengan algoritma Random Forest ini, kita membuat terlebih dulu object RandomForestRegressor dengan menentukan nilai awal beberapa parameter berikut:
+
+n_estimators = 50
+
+n_estimators menyatakan jumlah *Decision Trees* yang tercipta. Jadi model kita akan membangun 50 *Decision Trees*.
+
+max_depth = 12
+
+max_depth menyatakan kedalaman yang akan direalisasikan di setiap *Decision Trees*-nya. Dalam hal ini kita mengaturnya hingga 12 level.
+
+random_state = 55
+
+random_state mengendalikan tingkat keacakan dalam pembangunan setiap *Decision Trees*.
+
+n_jobs = -1
+
+n_jobs menyatakan jumlah *jobs* yang akan dijalankan secara parallel ketika melakukan training model. Angka -1 menyatakan bahwa semua pemroses akan dijalankan secara parallel.
+
+Langkah berikutnya adalah melakukan training model dengan menggunakan data training. Parameter yang dimasukkan adalah X_train yang memuat variabel independen, serta y_train yang memuat variabel dependennya.
 
 ### 5.3. Boosting 
 Pemodelan ketiga yang dipilih adalah Boosting. Algoritma ini mengkombinasikan beberapa algoritma "learners" yang ujungnya diharapkan mampu menghasilkan keluaran yang kuat. Di dalam algoritma Boosting ini dikombinasikan beberapa algoritma yang masing-masing punya kelebihan dan kekurangan, dimana diharapkan kombinasi antara "learners" yang lemah dan kuat akan menghasilkan keluaran prediksi yang lebih tepat.
@@ -498,13 +510,21 @@ Pemodelan ketiga yang dipilih adalah Boosting. Algoritma ini mengkombinasikan be
 Berikut code dari model Boosting dalam Python.
 
 ```python
-from sklearn.ensemble import AdaBoostRegressor
- 
 boosting = AdaBoostRegressor(learning_rate=0.05, random_state=55)                             
 boosting.fit(X_train, y_train)
-models.loc['train_mse','Boosting'] = mean_squared_error(y_pred=boosting.predict(X_train), y_true=y_train)
-models.loc['test_mse','Boosting'] = mean_squared_error(y_pred=boosting.predict(X_val), y_true=y_val)
 ```
+
+Untuk pemodelan dengan algoritma boosting kali ini kita menggunakan object AdaBoostRegressor. Parameter yang dipakai dalam pembentukan object-nya antara lain:
+
+learning_rate = 0.05
+
+learning_rate adalah bobot yang diterapkan pada setiap regressor pada setiap iterasi boosting. Nilai *learning rate* yang lebih tinggi meningkatkan kontribusi setiap regressor. Idealnya nilai ini diatur di posisi < 0.1.
+
+random_state = 55
+
+random_state menyatakan tingkat keacakan yang diinginkan di setiap estimator yang dipakai di dalam model Boosting.
+
+Langkah berikutnya adalah melakukan training model dengan menggunakan data X_train yang berisi kumpulan variabel independen dan y_train yang berisi variabel dependennya.
 
 ## 6. Evaluation
 Evaluasi kinerja pemodelan machine learning dilakukan dengan beberapa cara.
@@ -522,9 +542,11 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | train_mse | 0.188797            | 0.029990      | 0.13790  |
 | test_mse  | 0.165289            | 0.153723      | 0.14803  |
 
+Dari hasil training ketiga pemodelan tersebut, terlihat bahwa pemodelan *Random Forest* memiliki nilai MSE yang terkecil yang muncul pada saat training. Namun jika kita melihat selisih nilai MSE antara training dan testing, maka pemodelan *Boosting* yang paling kecil selisihnya. Begitu pula untuk nilai MSE di tahap testing, pemodelan *Boosting* juga unggul.
+
 ### 6.2.a. **Confusion Matrix**
 
-- Hasil pembuatan confusion matrix dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
+- Hasil pembuatan *confusion matrix* dari perbandingan antara keluaran riil validasi (y_val) dengan keluaran prediktif dari model (y_pred) adalah sebagai berikut:
 
 |                  | Logistic Regression | Random Forest     | Boosting          |
 |------------------|---------------------|-------------------|-------------------|
@@ -535,11 +557,13 @@ Berikut hasil evaluasi MSE dari ketiga model:
 | False Negative   | 1                   | 12                | 1                 |
 | True Negative    | 85                  | 74                | 85                |
 
+Dari tabel confusion matrix diatas, terlihat bahwa pemodelan *Logistic Regression* dan *Boosting* menghasilkan matriks yang serupa. Ini akan menghasilkan angka-angka akurasi, presisi dan sensitivitas yang serupa pula. Dalam kasus ini untuk menentukan mana yang lebih unggul, kita dapat lebih lanjut melihat nilai AUC dari kurva ROC-nya.
+
 ### 6.2.b. **Akurasi** 
   
 - Akurasi diukur dengan rumus:
 
-   $$Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$$
+   $Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$
 
 |                     | Accuracy           |
 |---------------------|--------------------|
@@ -551,7 +575,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 - Presisi diukur dengan rumus:
 
-   $$Precision = \frac{TP}{(TP + FP)}$$
+   $Precision = \frac{TP}{(TP + FP)}$
   
 |                     | Precision          |
 |---------------------|--------------------|
@@ -563,7 +587,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 - Sensitivitas diukur dengan rumus:
 
-   $$Sensitivity = \frac{TP}{(TP + FN)}$$
+   $Sensitivity = \frac{TP}{(TP + FN)}$
   
 |                     | Sensitivity        |
 |---------------------|--------------------|
@@ -573,7 +597,7 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 ## 6.3. **Area Under Curve (AUC)** 
 
-- Berikut ini adalah nilai AUC yang dihasilkan dengan memanggil fungsi roc_auc_score() dari library sklearn.metrics.
+- Berikut ini adalah nilai AUC yang dihasilkan dengan memanggil fungsi roc_auc_score() dari *library* sklearn.metrics.
 
 |                     | AUC                |
 |---------------------|--------------------|
@@ -583,19 +607,19 @@ Berikut hasil evaluasi MSE dari ketiga model:
 
 - Sedangkan berikut ini adalah visualisasi kurva ROC sekaligus menghitung skor AUC nya.
 
-- Berikut ini adalah kurva ROC dari pemodelan algoritma Logistic Regression. Skor AUC yang dihasilkan disini tidak terlalu memuaskan, karena hanya menghasilkan angka 0.6820.
+- Berikut ini adalah kurva ROC dari pemodelan algoritma *Logistic Regression*. Skor AUC yang dihasilkan disini tidak terlalu memuaskan, karena hanya menghasilkan angka 0.6820.
 
 |[<img src="/assets/images/roc_logreg.png" height="300" width="300"/>](/assets/images/roc_logreg.png)|
 |:--:| 
 | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Logistic Regression.* |
 
-- Berikut ini adalah kurva ROC dari pemodelan algoritma Random Forest. Dari bentuk kurva terlihat bahwa kurva ROC ini memang paling melengkung dibandingkan dengan kurva dari kedua algoritma lainnya. Ini terkonfirmasi dari nilai AUC-nya, yaitu sekitar 0.7892.
+- Berikut ini adalah kurva ROC dari pemodelan algoritma *Random Forest*. Dari bentuk kurva terlihat bahwa kurva ROC ini memang paling melengkung dibandingkan dengan kurva dari kedua algoritma lainnya. Ini terkonfirmasi dari nilai AUC-nya, yaitu sekitar 0.7892.
 
 |[<img src="/assets/images/roc_rf.png" height="300" width="300"/>](/assets/images/roc_rf.png)|
 |:--:| 
 | *Gambar 1. Kurva ROC yang dihasilkan dari pemodelan algoritma Random Forest.* |
 
-- Berikut ini adalah kurva ROC dari pemodelan algoritma Boosting. Pada pemodelan ini skor AUC yang dihasilkan ada di urutan kedua setelah pemodelan Random Forest, angka skor yang dihasilkan adalah 0.7088.
+- Berikut ini adalah kurva ROC dari pemodelan algoritma *Boosting*. Pada pemodelan ini skor AUC yang dihasilkan ada di urutan kedua setelah pemodelan *Random Forest*, angka skor yang dihasilkan adalah 0.7088.
 
 |[<img src="/assets/images/roc_boosting.png" height="300" width="300"/>](/assets/images/roc_boosting.png)|
 |:--:| 
