@@ -262,6 +262,8 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
   |No     |0    |213  |
   |Yes    |1    |401  |
 
+  Dari Gambar 8 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan sudah menikah.
+
 |[<img src="/assets/images/hist_married.png"/>](/assets/images/hist_married.png)|
 |:--:| 
 | *Gambar 8. Histogram data Married.* | 
