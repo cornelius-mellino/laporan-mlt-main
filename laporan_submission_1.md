@@ -301,6 +301,36 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 10. Histogram data Education.* | 
 
+- Periksa data Status Pekerjaan / Self_Employed
+
+  Berikut ini adalah nilai dari variabel atau fitur Education.
+
+  |Self_Employed|Value|Count|
+  |-------------|-----|-----|
+  |No     |0    |532  |
+  |Yes    |1    | 82  |
+
+  Dari Gambar 11 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan adalah bekerja sebagai karyawan, sedangkan yang bekerja mandiri hanya sekitar 15% saja.
+
+|[<img src="/assets/images/hist_employement_status.png"/>](/assets/images/hist_employement_status.png)|
+|:--:| 
+| *Gambar 11. Histogram data Self_Employed.* | 
+
+- Periksa data Pendapatan Applicant / ApplicantIncome
+
+  Dari Gambar 12 terlihat bahwa kebanyakan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil applicant yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga outliers. Entitas outliers ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
+
+
+|[<img src="/assets/images/hist_applicant_income_before.png"/>](/assets/images/hist_applicant_income_before.png)|
+|:--:| 
+| *Gambar 12. Histogram data ApplicantIncome.* | 
+
+
+|[<img src="/assets/images/scatter_applicant_income_before.png"/>](/assets/images/scatter_applicant_income_before.png)|
+|:--:| 
+| *Gambar 13. Scatter plot data ApplicantIncome.* | 
+
+
 ## 5. Modeling
 ### 5.1. Logistic Regression
 Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan algoritma Logistic Regression, karena algoritma ini cocok untuk permasalahan dengan banyak variabel independen dan menghasilkan output biner (0/1, Ya/Tidak, Approve/Reject dll).
