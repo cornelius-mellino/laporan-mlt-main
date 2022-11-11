@@ -244,14 +244,27 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
   |Gender|Value|Count|
   |------|-----|-----|
-  |Female|0    |502  |
-  |Male  |1    |112  |
+  |Female|0    |112  |
+  |Male  |1    |502  |
 
   Dari Gambar 7 terlihat bahwa para nasabah yang mengajukan pinjaman kebanyakan adalah kaum pria.
 
 |[<img src="/assets/images/hist_gender.png"/>](/assets/images/hist_gender.png)|
 |:--:| 
 | *Gambar 7. Histogram data Gender.* |  
+
+  - Periksa data Status Pernikahan / Married
+
+  Berikut ini adalah nilai dari variabel atau fitur Married.
+
+  |Married|Value|Count|
+  |-------|-----|-----|
+  |No     |0    |213  |
+  |Yes    |1    |401  |
+
+|[<img src="/assets/images/hist_married.png"/>](/assets/images/hist_married.png)|
+|:--:| 
+| *Gambar 8. Histogram data Married.* | 
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
