@@ -330,6 +330,17 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 |:--:| 
 | *Gambar 13. Scatter plot data ApplicantIncome.* | 
 
+  Setelah outliers kita potong di ambang batas USD 30.000, maka diagram histogram dan scatter plotnya akan menjadi seperti Gambar 14 dan 15 berikut ini.
+
+|[<img src="/assets/images/hist_applicant_income_after.png"/>](/assets/images/hist_applicant_income_after.png)|
+|:--:| 
+| *Gambar 14. Histogram data ApplicantIncome setelah pemotongan outliers.* | 
+
+
+|[<img src="/assets/images/scatter_applicant_income_after.png"/>](/assets/images/scatter_applicant_income_after.png)|
+|:--:| 
+| *Gambar 15. Scatter plot data ApplicantIncome setelah pemotongan outliers.* |   
+
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
