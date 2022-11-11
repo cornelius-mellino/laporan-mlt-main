@@ -345,7 +345,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - Periksa data Pendapatan Pasangan Applicant / CoapplicantIncome
 
-  Dari Gambar 12 terlihat bahwa kebanyakan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil applicant yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga outliers. Entitas outliers ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
+  Dari Gambar 16 terlihat bahwa kebanyakan pasangan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil pasangan applicant yang memiliki pendapatan sangat tinggi sampai USD 40.000 per tahun. Ini juga terpaparkan pada Gambar 17 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Outliers yang muncul disini juga akan kita potong dari data.
 
 
 |[<img src="/assets/images/hist_coapplicant_income_before.png"/>](/assets/images/hist_coapplicant_income_before.png)|
@@ -358,17 +358,24 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 | *Gambar 17. Scatter plot data CoapplicantIncome.* | 
 
 
-  Setelah outliers kita potong di ambang batas USD 30.000, maka diagram histogram dan scatter plotnya akan menjadi seperti Gambar 14 dan 15 berikut ini.
-
-
-|[<img src="/assets/images/hist_coapplicant_income_after.png"/>](/assets/images/hist_coapplicant_income_after.png)|
-|:--:| 
-| *Gambar 18. Histogram data CoapplicantIncome setelah pemotongan outliers.* | 
+  Setelah outliers kita potong di ambang batas USD 15.000, maka diagram scatter plotnya akan menjadi seperti Gambar 18 berikut ini.
 
 
 |[<img src="/assets/images/scatter_coapplicant_income_after.png"/>](/assets/images/scatter_coapplicant_income_after.png)|
 |:--:| 
-| *Gambar 19. Scatter plot data CoapplicantIncome setelah pemotongan outliers.* |   
+| *Gambar 18. Scatter plot data CoapplicantIncome setelah pemotongan outliers.* |   
+
+- Periksa data Jumlah Pinjaman / LoanAmount
+
+  Dari Gambar 19 dan 20 terlihat bahwa jumlah pinjaman yang diambil kebanyakan berkisar antara USD 100-200K. Sedangkan nilai maksimal yang diambil sekitar USD 600K.
+
+|[<img src="/assets/images/hist_loan_amount.png"/>](/assets/images/hist_loan_amount.png)|
+|:--:| 
+| *Gambar 19. Histogram data LoanAmount.* | 
+
+|[<img src="/assets/images/scatter_loan_amount.png"/>](/assets/images/scatter_loan_amount.png)|
+|:--:| 
+| *Gambar 20. Scatter plot data LoanAmount.* |  
 
 
 ## 5. Modeling
