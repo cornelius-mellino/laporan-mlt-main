@@ -174,27 +174,52 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - Data splitting
 
-Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val.
+  Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val.
 
 - Mengidentifikasi nilai null.
 
-Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing. Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
+  Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing. Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
 
 |[<img src="/assets/images/nulltrain_before.png"/>](/assets/images/nulltrain_before.png)|
 |:--:| 
 | *Gambar 2. Visualisasi nilai null pada data training.* |
 
-Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
+  Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
 
 |[<img src="/assets/images/nullval_before.png"/>](/assets/images/nullval_before.png)|
 |:--:| 
 | *Gambar 3. Visualisasi nilai null pada data testing.* |
 
-Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
+  Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
 
 - Mengganti nilai null dengan nilai rerata atau modus.
 
+  Terdapat beberapa cara dalam berurusan dengan nilai null atau NA (Not Available). Pada penelitian ini kami memilih dua cara yaitu penggunaan nilai terbanyak (modus) untuk mengisi NA yang ada di data kategorikal dan penggunaan nilai rerata (mean) untuk mengisi NA yang ada di data numerikal.
+  
+  Berikut ini adalah fitur atau variabel yang terdampak proses penggantian nilai NA.
+  Modus: Gender, Married, Dependents, Self_Employed, Credit_History
+  Mean: LoanAmount, Loan_Amout_Term
+
+|[<img src="/assets/images/nulltrain_after.png"/>](/assets/images/nulltrain_after.png)|
+|:--:| 
+| *Gambar 4. Visualisasi nilai null pada data training.* |
+
+  Gambar 4 merupakan visualisasi dari data training setelah proses penggantian nilai null / NA. Sedangkan Gambar 5 merupakan visualisasi dari data testing setelah proses yang sama.
+
+|[<img src="/assets/images/nullval_after.png"/>](/assets/images/nullval_after.png)|
+|:--:| 
+| *Gambar 5. Visualisasi nilai null pada data testing.* |
+
 - Mengubah nilai kategorikal menjadi nilai numerikal.
+
+  Setelah nilai null atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di library sklearn.preprocessing. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
+
+  	Loan_ID	Gender	Married	Dependents	Education	Self_Employed	ApplicantIncome	CoapplicantIncome	LoanAmount	Loan_Amount_Term	Credit_History	Property_Area	Loan_Status
+0	LP001002	1	0	0	0	0	5849	0.0	146.412162	360.0	1.0	2	1
+1	LP001003	1	1	1	0	0	4583	1508.0	128.000000	360.0	1.0	0	0
+2	LP001005	1	1	0	0	1	3000	0.0	66.000000	360.0	1.0	2	1
+3	LP001006	1	1	0	1	0	2583	2358.0	120.000000	360.0	1.0	2	1
+4	LP001008	1	0	0	0	0	6000	0.0	141.000000	360.0	1.0	2	1
 
 - Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.
 
