@@ -180,17 +180,17 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
   Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing. Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
 
+  Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
+
+  Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
+
 |[<img src="/assets/images/nulltrain_before.png"/>](/assets/images/nulltrain_before.png)|
 |:--:| 
 | *Gambar 2. Visualisasi nilai null pada data training.* |
 
-- Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
-
 |[<img src="/assets/images/nullval_before.png"/>](/assets/images/nullval_before.png)|
 |:--:| 
 | *Gambar 3. Visualisasi nilai null pada data testing.* |
-
-- Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
 
 - Mengganti nilai null dengan nilai rerata atau modus.
 
