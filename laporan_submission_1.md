@@ -2,40 +2,40 @@
 
 ## 1. Domain Proyek
 
-Proyek machine learning terapan kali ini adalah membuat satu pemodelan yang mampu memprediksi kelayakan pemberian persetujuan kredit pemilikan rumah (KPR) untuk pengajuan yang diproses. Beberapa variabel atau fitur menjadi elemen dari inputan pemodelan yang dibangun.
+Proyek *machine learning* terapan kali ini adalah membuat satu pemodelan yang mampu memprediksi kelayakan pemberian persetujuan kredit pemilikan rumah (KPR) untuk pengajuan yang diproses. Beberapa variabel atau fitur menjadi elemen dari inputan pemodelan yang dibangun.
 
-- Proses kredit adalah proses meminjamkan sejumlah dana kepada seseorang atau lembaga supaya mereka dapat memenuhi kebutuhannya dengan dana tersebut. Untuk kredit yang mentarget perseorangan disebut juga sebagai kredit retail, sedangkan yang mentargetkan perusahaan atau lembaga disebut sebagai kredit korporasi. Dalam pengajuannya, terdapat banyak hal yang perlu dipertimbangkan. Bahkan untuk beberapa jenis kredit membutuhkan agunan / jaminan berupa aset yang variasinya juga beragam. Untuk kredit pemilikan rumah (KPR) misalnya, rumah yang kita cicil akan secara otomatis menjadi jaminan dan sertifikatnya dipegang oleh pihak pemberi kredit sampai cicilan tersebut lunas (Suyatno, 2007). 
+- Proses kredit adalah proses meminjamkan sejumlah dana kepada seseorang atau lembaga supaya mereka dapat memenuhi kebutuhannya dengan dana tersebut. Untuk kredit yang mentarget perseorangan disebut juga sebagai kredit *retail*, sedangkan yang mentargetkan perusahaan atau lembaga disebut sebagai kredit korporasi. Dalam pengajuannya, terdapat banyak hal yang perlu dipertimbangkan. Bahkan untuk beberapa jenis kredit membutuhkan agunan / jaminan berupa aset yang variasinya juga beragam. Untuk kredit pemilikan rumah (KPR) misalnya, rumah yang kita cicil akan secara otomatis menjadi jaminan dan sertifikatnya dipegang oleh pihak pemberi kredit sampai cicilan tersebut lunas (Suyatno, 2007). 
 
-- Namun baik pengajuan kredit retail maupun korporasi, keduanya harus melewati serangkaian proses sebelum sampai ke tahap persetujuan. Rangkaian proses tersebut diantaranya antara lain pemeriksaan latar belakang, pemeriksaan skor kelayakan berdasarkan variabel-variabel yang didapat informasinya dari form yang diisi oleh nasabah, pemeriksaan skor kelayakan dari pihak ketiga seperti Pefindo untuk di Indonesia, pemeriksaan kelengkapan dokumen, validasi biometrik. Setelah semua pemeriksaan tadi menghasilkan nilai positif, maka pengajuan kredit dapat ditetapkan sebagai layak atau eligible untuk dipenuhi (Hasibuan, 2008).
+- Namun baik pengajuan kredit retail maupun korporasi, keduanya harus melewati serangkaian proses sebelum sampai ke tahap persetujuan. Rangkaian proses tersebut diantaranya antara lain pemeriksaan latar belakang, pemeriksaan skor kelayakan berdasarkan variabel-variabel yang didapat informasinya dari form yang diisi oleh nasabah, pemeriksaan skor kelayakan dari pihak ketiga seperti Pefindo untuk di Indonesia, pemeriksaan kelengkapan dokumen, validasi biometrik. Setelah semua pemeriksaan tadi menghasilkan nilai positif, maka pengajuan kredit dapat ditetapkan sebagai layak atau *eligible* untuk dipenuhi (Hasibuan, 2008).
 
 ## 2. Business Understanding
 
-Dalam pengajuan kredit, baik manual (paper based) dan online, semuanya harus melalui serangkaian pengecekan data, analisa dan scoring untuk menentukan kelayakannya untuk disetujui. Hal yang menentukan kelayakan tersebut biasanya berupa serangkaian variabel yang harus diisi nilainya saat nasabah mengisi form pengajuannya. 
+Dalam pengajuan kredit, baik manual (*paper based*) dan *online*, semuanya harus melalui serangkaian pengecekan data, analisa dan *scoring* untuk menentukan kelayakannya untuk disetujui. Hal yang menentukan kelayakan tersebut biasanya berupa serangkaian variabel yang harus diisi nilainya saat nasabah mengisi form pengajuannya. 
 
-- Dalam melakukan sebuah pengajuan kredit, nasabah harus mengisi form pengajuan yang biasanya memiliki banyak kolom yang harus diisi. Form pengajuan kredit ini isinya meliputi: bio data, informasi tempat tinggal, informasi pekerjaan, informasi tempat kerja, informasi finansial (hutang, aset), informasi kontak terdekat, informasi perbankan (nomor rekening, kartu kredit), dokumen pelengkap. Sedangkan untuk kredit korporasi, biasanya harus mengajukan proposal kredit yang berisi kurang lebih informasi sebagai berikut: executive summary perusahaan, identitas dan struktur perusahaan, gambaran umum perusahaan, kondisi keuangan perusahaan, analisis industri, struktur  keuangan perusahaan, analisis proyeksi keuangan, jaminan kredit, lampiran (Jusuf, 2003).
+- Dalam melakukan sebuah pengajuan kredit, nasabah harus mengisi *form* pengajuan yang biasanya memiliki banyak kolom yang harus diisi. *Form* pengajuan kredit ini isinya meliputi: bio data, informasi tempat tinggal, informasi pekerjaan, informasi tempat kerja, informasi finansial (hutang, aset), informasi kontak terdekat, informasi perbankan (nomor rekening, kartu kredit), dokumen pelengkap. Sedangkan untuk kredit korporasi, biasanya harus mengajukan proposal kredit yang berisi kurang lebih informasi sebagai berikut: *executive summary* perusahaan, identitas dan struktur perusahaan, gambaran umum perusahaan, kondisi keuangan perusahaan, analisis industri, struktur  keuangan perusahaan, analisis proyeksi keuangan, jaminan kredit, lampiran (Jusuf, 2003).
 
-- Eligibility atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Persaingan penyedia layanan kredit online membuat para pemainnya berlomba-lomba memaksimalkan layanan bisnis mereka terutama pada peningkatan kecepatan proses persetujuan. Perlombaan di aspek ini memaksa para pemain tersebut melakukan eksplorasi teknologi machine learning dan AI untuk mempersingkat waktu, dan dalam waktu yang bersamaan mendapatkan akurasi yang tinggi akan keputusan persetujuan yang diambil. Akurasi yang tinggi diperlukan, karena kesalahan dalam pemberian keputusan kredit akan menimbulkan kerugian bagi penyedia jasa layanan kredit terkait (Amrin & Pahlevi, 2022). Baik salah menyetujui nasabah yang tidak layak diberi kredit (false positive), maupun tidak menyetujui nasabah yang layak diberi kredit (false negative), semuanya sama-sama membuka potensi kerugian (Amrin & Pahlevi, 2022). Dengan solusi implementasi model machine learning diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, dicoba untuk mengimplementasikan beberapa algoritma untuk pemodelan antara lain: logistic regression, random forest dan boosting yang semuanya mampu memberikan output yang mewakili keputusan disetujui (1) atau ditolak (0).
+- *Eligibility* atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Persaingan penyedia layanan kredit online membuat para pemainnya berlomba-lomba memaksimalkan layanan bisnis mereka terutama pada peningkatan kecepatan proses persetujuan. Perlombaan di aspek ini memaksa para pemain tersebut melakukan eksplorasi teknologi *machine learning* dan *AI* untuk mempersingkat waktu, dan dalam waktu yang bersamaan mendapatkan akurasi yang tinggi akan keputusan persetujuan yang diambil. Akurasi yang tinggi diperlukan, karena kesalahan dalam pemberian keputusan kredit akan menimbulkan kerugian bagi penyedia jasa layanan kredit terkait (Amrin & Pahlevi, 2022). Baik salah menyetujui nasabah yang tidak layak diberi kredit (*false positive*), maupun tidak menyetujui nasabah yang layak diberi kredit (*false negative*), semuanya sama-sama membuka potensi kerugian (Amrin & Pahlevi, 2022). Dengan solusi implementasi model *machine learning* diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, dicoba untuk mengimplementasikan beberapa algoritma untuk pemodelan antara lain: *Logistic Regression*, *Random Forest* dan *Boosting* yang semuanya mampu memberikan *output* yang mewakili keputusan disetujui (1) atau ditolak (0).
 
 ### 2.1. Problem Statements
 
 Poin-poin masalah yang terdapat di proses pengajuan kredit antara lain:
 
-- Pemrosesan form pengajuan kredit yang membutuhkan waktu yang cukup lama. Lamanya waktu proses semenjak form disubmit sampai diterimanya notifikasi disetujui / ditolak oleh nasabah menjadi salah satu titik penting dalam persaingan layanan pemberian kredit. Dari sisi nasabah semakin cepat tentu saja akan semakin menaikkan tingkat kepuasan terhadap layanan tersebut. Sedangkan dari sisi institusi finansial, meningkatnya kecepatan akan menaikkan nilai competitiveness dari layanannya di arena bisnis terkait.
+- Pemrosesan form pengajuan kredit yang membutuhkan waktu yang cukup lama. Lamanya waktu proses semenjak form disubmit sampai diterimanya notifikasi disetujui / ditolak oleh nasabah menjadi salah satu titik penting dalam persaingan layanan pemberian kredit. Dari sisi nasabah semakin cepat tentu saja akan semakin menaikkan tingkat kepuasan terhadap layanan tersebut. Sedangkan dari sisi institusi finansial, meningkatnya kecepatan akan menaikkan nilai *competitiveness* dari layanannya di arena bisnis terkait.
 
-- Akurasi keputusan persetujuan pemberian kredit menjadi hal yang sangat penting bagi institusi finansial penyedia layanan tersebut. Kesalahan dalam pemberian persetujuan akan membawa kerugian finansial bagi institusi tersebut. Bila ternyata kredit disetujui namun nasabah tidak mampu mengembalikan maka akan membawa kerugian finansial yang nyata, bila kredit tidak disetujui padahal nasabah seharusnya layak untuk diberi dan memiliki kemampuan untuk mengembalikan pinjamannya maka akan membawa kerugian berupa loss of opportunity bagi institusi penyedia layanan kredit.
+- Akurasi keputusan persetujuan pemberian kredit menjadi hal yang sangat penting bagi institusi finansial penyedia layanan tersebut. Kesalahan dalam pemberian persetujuan akan membawa kerugian finansial bagi institusi tersebut. Bila ternyata kredit disetujui namun nasabah tidak mampu mengembalikan maka akan membawa kerugian finansial yang nyata, bila kredit tidak disetujui padahal nasabah seharusnya layak untuk diberi dan memiliki kemampuan untuk mengembalikan pinjamannya maka akan membawa kerugian berupa *loss of opportunity* bagi institusi penyedia layanan kredit.
 
 ### 2.2. Goals
 
 Tujuan dari implementasi solusi machine learning ini antara lain:
 
-- Mempercepat pengajuan kredit dengan mengimplementasikan pemodelan machine learning berbasiskan beberapa algoritma pemodelan, antara lain logistic regression, random forest dan boosting. Ketiga algoritma tersebut akan diperbandingkan kinerjanya dan akan diulas kelebihan maupun kekurangannya.
+- Mempercepat pengajuan kredit dengan mengimplementasikan pemodelan machine learning berbasiskan beberapa algoritma pemodelan, antara lain *Logistic Regression*, *Random Forest* dan *Boosting*. Ketiga algoritma tersebut akan diperbandingkan kinerjanya dan akan diulas kelebihan maupun kekurangannya.
 
 - Mencari algoritma pemodelan yang memiliki tingkat akurasi paling tinggi, serta memiliki nilai optimal untuk aspek penilaian lainnya yang dapat membantu institusi pemberi layanan kredit dalam pemberian persetujuan kepada pengajuan yang diajukan oleh para nasabah. Hal ini juga tentunya akan membantu menekan risiko kerugian yang mungkin terjadi di masa depan nantinya.
 
 ### 2.3. Solution specifications
-  Implementasi pemodelan machine learning untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
+  Implementasi pemodelan *machine learning* untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
   
-  - Mengimplementasikan pemodelan menggunakan tiga buah algoritma: Logistic Regression, Random Forest dan Boosting.
+  - Mengimplementasikan pemodelan menggunakan tiga buah algoritma: *Logistic Regression*, *Random Forest* dan *Boosting*.
   
   - Penilaian performa terhadap ketiga pemodelan yang akan dibuat menggunakan beberapa buah metrik/metode pengukuran, antara lain sebagai berikut:
 
@@ -93,7 +93,7 @@ Tujuan dari implementasi solusi machine learning ini antara lain:
       | *Gambar 1. Kurva ROC. (Sumber: Wikipedia)* |
 
 ## 3. Data Understanding
-Data yang dipakai pada proyek ini adalah Loan Eligible Dataset dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
+Data yang dipakai pada proyek ini adalah *Loan Eligible Dataset* dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
 
 Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani semua pinjaman KPR. Mereka hadir di semua wilayah perkotaan, semi-perkotaan, dan pedesaan. Pelanggan pertama-tama mengajukan pinjaman KPR setelah itu perusahaan memvalidasi kelayakan pelanggan untuk pinjaman.
 
@@ -112,8 +112,8 @@ Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani s
 - Property_Area	: Area properti, Urban/ Semi-Urban/ Rural
 - Loan_Status	: Status persetujuan kredit, (Y/N)
 
-Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory sebagai berikut:
-- Melihat bagian awal tabel data dengan function head().
+Setelah data mentah di-*load*, kita melakukan serangkaian aktivitas *exploratory* sebagai berikut:
+- Melihat bagian awal tabel data dengan fungsi head().
 
 |	  |Loan_ID	|Gender	|Married	|Dependents	|Education	|Self_Employed	|ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History	|Property_Area	|Loan_Status|
 |---|---------|-----|---|---|---------|---|-----|-----|-----|-------|-----|-------|----|
@@ -123,7 +123,7 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 |3	|LP001006	|Male	|Yes	|0	|Not Graduate	|No	|2583	|2358.0	|120.0	|360.0	|1.0	|Urban	|Y|
 |4	|LP001008	|Male	|No	|0	|Graduate	|No	|6000	|0.0	|141.0	|360.0	|1.0	|Urban	|Y|
 
-- Melihat summary data dengan function describe().
+- Melihat *summary* data dengan fungsi describe().
 
 |	      |ApplicantIncome	|CoapplicantIncome	|LoanAmount	|Loan_Amount_Term	|Credit_History|
 |-------|-----------------|-------------------|-----------|-----------------|--------------|
@@ -136,7 +136,7 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
 |75%	|5795.000000	|2297.250000	|168.000000	|360.00000	|1.000000|
 |max	|81000.000000	|41667.000000	|700.000000	|480.00000	|1.000000|
 
-- Melihat struktur data dengan function info().
+- Melihat struktur data dengan fungsi info().
 
 |#    |Column              |Non-Null Count    |Dtype  | 
 |-----|--------------------|------------------|-------|  
@@ -170,19 +170,19 @@ Setelah data mentah diload, kita melakukan serangkaian aktivitas exploratory seb
   - status pengajuan pinjaman (Loan_Status), berisi Y/N. Dimana Y berarti pengajuan pinjaman disetujui, dan N berarti pengajuan pinjaman tidak disetujui.
 
 ## 4. Data Preparation
-Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
+Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
 
 - **Data splitting**
 
-  Sebetulnya data bisa saja di-split setelah aktivitas data preparation, namun dalam kasus ini dataset memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses data preparation di kedua bagian. Kita menamakan bagian untuk training sebagai df_train, dan bagian untuk testing atau validasi sebagai df_val. Pada tahapan ini kita membagi data dengan porsi training sekitar 70% dan porsi testing sekitar 30%.
+  Sebetulnya data bisa saja di-*split* setelah aktivitas *data preparation*, namun dalam kasus ini *dataset* memang sudah dipecah dari sumber aslinya. Jadi kita langsung melakukan proses *data preparation* di kedua bagian. Kita menamakan bagian untuk *training* sebagai df_train, dan bagian untuk *testing* atau validasi sebagai df_val. Pada tahapan ini kita membagi data dengan porsi *training* sekitar 70% dan porsi *testing* sekitar 30%.
 
 - **Mengidentifikasi nilai null.**
 
-  Di tahap ini kita melakukan identifikasi nilai null, baik di data training maupun testing. Berikut ini adalah visualisasi nilai null di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai null pada data training.
+  Di tahap ini kita melakukan identifikasi nilai *null*, baik di data training maupun testing. Berikut ini adalah visualisasi nilai *null* di kedua data tersebut. Gambar 2 merupakan visualisasi dari nilai *null* pada data training.
 
-  Gambar 3 merupakan visualisasi dari nilai null pada data testing. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai null yang ada pada kolom tersebut. Bila nantinya nilai null ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
+  Gambar 3 merupakan visualisasi dari nilai *null* pada data *testing*. Garis-garis putih yang ada pada setiap kolom mewakili eksistensi nilai *null* yang ada pada kolom tersebut. Bila nantinya nilai *null* ini dihilangkan maka visualisasi ulang akan menampilkan kolom-kolom yang polos tanpa garis-garis putih melintang sama sekali.
 
-  Nilai null ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai null mungkin saja menyebabkan proses komputasi berhenti.
+  Nilai *null* ini harus dihilangkan agar tidak mempengaruhi kinerja model. Apalagi bila model melibatkan perhitungan matematis, maka keberadaan nilai *null* mungkin saja menyebabkan proses komputasi berhenti.
 
 |[<img src="/assets/images/nulltrain_before.png"/>](/assets/images/nulltrain_before.png)|
 |:--:| 
@@ -194,13 +194,13 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Mengganti nilai null dengan nilai rerata atau modus.**
 
-  Terdapat beberapa cara dalam berurusan dengan nilai null atau NA (Not Available). Pada penelitian ini kami memilih dua cara yaitu penggunaan nilai terbanyak (modus) untuk mengisi NA yang ada di data kategorikal dan penggunaan nilai rerata (mean) untuk mengisi NA yang ada di data numerikal.
+  Terdapat beberapa cara dalam berurusan dengan nilai *null* atau NA (Not Available). Pada penelitian ini kami memilih dua cara yaitu penggunaan nilai terbanyak (*modus*) untuk mengisi NA yang ada di data kategorikal dan penggunaan nilai rerata (*mean*) untuk mengisi NA yang ada di data numerikal.
   
   Berikut ini adalah fitur atau variabel yang terdampak proses penggantian nilai NA.
   Modus: Gender, Married, Dependents, Self_Employed, Credit_History
   Mean: LoanAmount, Loan_Amout_Term
 
-  Gambar 4 merupakan visualisasi dari data training setelah proses penggantian nilai null / NA. Sedangkan Gambar 5 merupakan visualisasi dari data testing setelah proses yang sama.
+  Gambar 4 merupakan visualisasi dari data *training* setelah proses penggantian nilai null / NA. Sedangkan Gambar 5 merupakan visualisasi dari data *testing* setelah proses yang sama.
 
 |[<img src="/assets/images/nulltrain_after.png"/>](/assets/images/nulltrain_after.png)|
 |:--:| 
@@ -212,7 +212,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Mengubah nilai kategorikal menjadi nilai numerikal.**
 
-  Setelah nilai null atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di library sklearn.preprocessing. Langkah pengubahan ke nilai numerikal ini berguna untuk beberapa algoritma pemodelan yang hanya dapat memproses data dalam bentuk numerik, supaya data kita aman dan dapat dipakai secara umum oleh ketiga algoritma yang akan kita coba maka lebih baik kita lakukan langkah ini. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
+  Setelah nilai *null* atau NA hilang dari keseluruhan data, maka kita maju ke tahap selanjutnya yaitu mengubah nilai data kategorikal menjari numerik. Pada tahapan ini kita menggunakan fungsi fit_transform() dari kelas LabelEncoder, yang ada di *library* sklearn.preprocessing. Langkah pengubahan ke nilai numerikal ini berguna untuk beberapa algoritma pemodelan yang hanya dapat memproses data dalam bentuk numerik, supaya data kita aman dan dapat dipakai secara umum oleh ketiga algoritma yang akan kita coba maka lebih baik kita lakukan langkah ini. Berikut adalah cuplikan data setelah beberapa fiturnya diubah dari kategorikal ke numerikal.
 
 |  	|Loan_ID	|Gender|Married|Dependents|Education|Self_Employed|ApplicantIncome|CoapplicantIncome|LoanAmount	|Loan_Amount_Term|Credit_History|Property_Area|Loan_Status|
 |---|---------|------|-------|----------|---------|-------------|---------------|-----------------|-----------|----------------|--------------|-------------|-----------|
@@ -224,7 +224,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Membuat visualisasi heatmap untuk memeriksa keterkaitan antar fitur.**
 
-  Setelah mengubah nilai kategorikal kita coba melihat sedikit keterkaitan atau korelasi antar-fitur yang ada di dalam struktur data kita. Hal ini dapat dilakukan dengan mudah menggunakan fungsi heatmap() pada library seaborn, serta fungsi corr() dari dataframe di library panda. Berikut pada Gambar 6 adalah gambar heatmap pemetaan korelasi dari struktur data training. Terlihat pada gambar tersebut korelasi yang cukup signifikan terjadi antara LoanAmount dengan ApplicantIncome serta yang lebih penting adalah Loan_Status dengan Credit_History. Skor positif menunjukkan korelasi dengan arah positif atau berbending lurus, sedangkan skor negatif menunjukan hubungan yang berbanding terbalik.
+  Setelah mengubah nilai kategorikal kita coba melihat sedikit keterkaitan atau korelasi antar-fitur yang ada di dalam struktur data kita. Hal ini dapat dilakukan dengan mudah menggunakan fungsi heatmap() pada *library* seaborn, serta fungsi corr() dari dataframe di *library* panda. Berikut pada Gambar 6 adalah gambar heatmap pemetaan korelasi dari struktur data *training*. Terlihat pada gambar tersebut korelasi yang cukup signifikan terjadi antara LoanAmount dengan ApplicantIncome serta yang lebih penting adalah Loan_Status dengan Credit_History. Skor positif menunjukkan korelasi dengan arah positif atau berbending lurus, sedangkan skor negatif menunjukan hubungan yang berbanding terbalik.
 
 |[<img src="/assets/images/heatmap.png"/>](/assets/images/heatmap.png)|
 |:--:| 
@@ -232,15 +232,15 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Memotong fitur Loan_ID.**
 
-  Fitur ini kita potong karena memang tidak akan dipakai dalam proses training modelnya.
+  Fitur ini kita potong karena memang tidak akan dipakai dalam proses *training* modelnya.
 
-- Memeriksa masing-masing fitur dengan visualisasi histogram atau scatter plot.
+- Memeriksa masing-masing fitur dengan visualisasi *histogram* atau *scatter plot*.
 
-  Pada tahapan ini kita memeriksa karakteristik masing-masing fitur dengan memakai alat bantu diagram histogram dan scatter plot. Diagram histogram membantu kita melihat sebaran data, sedangkan scatter plot membantu kita melihat pola data dan outlier yang muncul.
+  Pada tahapan ini kita memeriksa karakteristik masing-masing fitur dengan memakai alat bantu diagram *histogram* dan scatter plot. Diagram *histogram* membantu kita melihat sebaran data, sedangkan *scatter plot* membantu kita melihat pola data dan *outlier* yang muncul.
 
 - **Periksa data Jenis Kelamin / Gender.**
 
-  Berikut ini adalah nilai dari variabel atau fitur Gender.
+  Berikut ini adalah nilai dari variabel atau fitur *Gender*.
 
   |Gender|Value|Count|
   |------|-----|-----|
@@ -256,7 +256,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Status Pernikahan / Married.**
 
-  Berikut ini adalah nilai dari variabel atau fitur Married.
+  Berikut ini adalah nilai dari variabel atau fitur *Married*.
 
   |Married|Value|Count|
   |-------|-----|-----|
@@ -271,7 +271,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Jumlah Tanggungan / Dependents.**
 
-  Berikut ini adalah nilai dari variabel atau fitur Dependents.
+  Berikut ini adalah nilai dari variabel atau fitur *Dependents*.
 
   |Dependents|Count|
   |-------|-----|
@@ -288,7 +288,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Pendidikan Terakhir / Education.**
 
-  Berikut ini adalah nilai dari variabel atau fitur Education.
+  Berikut ini adalah nilai dari variabel atau fitur *Education*.
 
   |Education|Value|Count|
   |-------------|-----|-----|
@@ -303,7 +303,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Status Pekerjaan / Self_Employed.**
 
-  Berikut ini adalah nilai dari variabel atau fitur Education.
+  Berikut ini adalah nilai dari variabel atau fitur *Self_Employed*.
 
   |Self_Employed|Value|Count|
   |-------------|-----|-----|
@@ -318,7 +318,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Pendapatan Applicant / ApplicantIncome.**
 
-  Dari Gambar 12 terlihat bahwa kebanyakan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil applicant yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga outliers. Entitas outliers ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
+  Dari Gambar 12 terlihat bahwa kebanyakan *applicant* memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil *applicant* yang memiliki pendapatan sangat tinggi sampai USD 80.000 per tahun. Ini juga terpaparkan pada Gambar 13 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Sejumlah kecil data yang terpisah jauh dari kebanyakan data lainnya disebut juga *outliers*. Entitas *outliers* ini sebaiknya dipotong terlebih dulu dari data kita karena memiliki risiko untuk membuat bias dalam hasil prediksi pemodelan yang kita buat.
 
 
 |[<img src="/assets/images/hist_applicant_income_before.png"/>](/assets/images/hist_applicant_income_before.png)|
@@ -331,7 +331,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 | *Gambar 13. Scatter plot data ApplicantIncome.* | 
 
 
-  Setelah outliers kita potong di ambang batas USD 30.000, maka diagram histogram dan scatter plotnya akan menjadi seperti Gambar 14 dan 15 berikut ini.
+  Setelah *outliers* kita potong di ambang batas USD 30.000, maka diagram *histogram* dan *scatter plot*-nya akan menjadi seperti Gambar 14 dan 15 berikut ini.
 
 
 |[<img src="/assets/images/hist_applicant_income_after.png"/>](/assets/images/hist_applicant_income_after.png)|
@@ -345,7 +345,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Pendapatan Pasangan Applicant / CoapplicantIncome.**
 
-  Dari Gambar 16 terlihat bahwa kebanyakan pasangan applicant memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil pasangan applicant yang memiliki pendapatan sangat tinggi sampai USD 40.000 per tahun. Ini juga terpaparkan pada Gambar 17 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. Outliers yang muncul disini juga akan kita potong dari data.
+  Dari Gambar 16 terlihat bahwa kebanyakan pasangan *applicant* memiliki pendapatan kurang dari USD 10.000 per tahun, sedangkan terdapat sebagian kecil pasangan *applicant* yang memiliki pendapatan sangat tinggi sampai USD 40.000 per tahun. Ini juga terpaparkan pada Gambar 17 yang membuat titik-titik data terkumpul padat di bawah dan terdapat sedikit titik yang bertebaran longgar ke atas. *Outliers* yang muncul disini juga akan kita potong dari data.
 
 
 |[<img src="/assets/images/hist_coapplicant_income_before.png"/>](/assets/images/hist_coapplicant_income_before.png)|
@@ -358,7 +358,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 | *Gambar 17. Scatter plot data CoapplicantIncome.* | 
 
 
-  Setelah outliers kita potong di ambang batas USD 15.000, maka diagram scatter plotnya akan menjadi seperti Gambar 18 berikut ini.
+  Setelah outliers kita potong di ambang batas USD 15.000, maka diagram *scatter plot*-nya akan menjadi seperti Gambar 18 berikut ini.
 
 
 |[<img src="/assets/images/scatter_coapplicant_income_after.png"/>](/assets/images/scatter_coapplicant_income_after.png)|
@@ -399,7 +399,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 - **Periksa data Area Properti / Property_Area.**
 
-  Dari Gambar 24 terlihat bahwa mayoritas properti yang di-KPR-kan ada di area Semi Urban, sedangkan properti di area Rural dan Urban jumlahnya seimbang.
+  Dari Gambar 24 terlihat bahwa mayoritas properti yang di-KPR-kan ada di area *Semi Urban*, sedangkan properti di area *Rural* dan *Urban* jumlahnya seimbang.
 
 |[<img src="/assets/images/hist_property_area.png"/>](/assets/images/hist_property_area.png)|
 |:--:| 
@@ -408,7 +408,7 @@ Teknik data preparation yang dilakukan untuk mempersiapkan data sebelum diproses
 
 ## 5. Modeling
 ### 5.1. Logistic Regression
-Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan algoritma Logistic Regression, karena algoritma ini cocok untuk permasalahan dengan banyak variabel independen dan menghasilkan output biner (0/1, Ya/Tidak, Approve/Reject dll).
+Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan algoritma *Logistic Regression*, karena algoritma ini cocok untuk permasalahan dengan banyak variabel independen dan menghasilkan output biner (0/1, Ya/Tidak, *Approve/Reject* dll).
 
 **Kelebihan**
 
@@ -417,18 +417,17 @@ Pemodelan pertama yang dipilih untuk solusi ini adalah model yang menggunakan al
 - Tidak hanya memberikan ukuran seberapa tepat suatu prediktor (ukuran koefisien), tetapi juga arah asosiasinya (positif atau negatif).
 - Sangat cepat dalam mengklasifikasikan record-record yang tidak diketahui.
 - Memiliki tingkat akurasi yang baik untuk kumpulan data sederhana dan berkinerja baik ketika kumpulan data dapat dipisahkan secara linier.
-- Ini dapat menginterpretasikan koefisien model sebagai indikator pentingnya fitur.
 
 **Kekurangan**
 
-- Jika jumlah observasi lebih kecil dari jumlah fitur, Logistic Regression tidak bisa dipakai karena dapat menyebabkan overfitting.
-- Keterbatasan utama Regresi Logistik adalah asumsi linearitas antara variabel dependen dan variabel independen.
-- Hanya dapat digunakan untuk memprediksi fungsi diskrit. Oleh karena itu, variabel terikat Regresi Logistik terikat pada himpunan bilangan diskrit.
-- Masalah non-linier tidak dapat diselesaikan dengan regresi logistik karena memiliki permukaan keputusan linier. Data yang dapat dipisahkan secara linier jarang ditemukan dalam skenario dunia nyata.
-- Regresi Logistik membutuhkan rata-rata atau tidak ada multikolinearitas antar variabel bebas.
-- Sulit untuk mendapatkan hubungan yang kompleks menggunakan regresi logistik. Algoritme yang lebih kuat dan ringkas seperti Neural Networks dapat dengan mudah mengungguli algoritme ini.
+- Jika jumlah observasi lebih kecil dari jumlah fitur, *Logistic Regression* tidak bisa dipakai karena dapat menyebabkan *overfitting*.
+- Keterbatasan utama *Logistic Regression* adalah asumsi linearitas antara variabel dependen dan variabel independen.
+- Hanya dapat digunakan untuk memprediksi fungsi diskrit. Oleh karena itu, variabel terikat *Logistic Regression* terikat pada himpunan bilangan diskrit.
+- Masalah non-linier tidak dapat diselesaikan dengan *Logistic Regression* karena memiliki permukaan keputusan linier. Data yang dapat dipisahkan secara linier jarang ditemukan dalam skenario dunia nyata.
+- *Logistic Regression* membutuhkan rata-rata atau tidak ada multikolinearitas antar variabel bebas.
+- Sulit untuk mendapatkan hubungan yang kompleks menggunakan *Logistic Regression*. Algoritma yang lebih kuat dan ringkas seperti *Neural Networks* dapat dengan mudah mengungguli algoritma ini.
 
-Berikut code dari model Logistic Regression dalam Python.
+Berikut code dari model *Logistic Regression* dalam Python.
 
 ```python
 pipe = make_pipeline(StandardScaler(), LogisticRegression(solver = "lbfgs"))
@@ -436,13 +435,13 @@ pipe.fit(X_train, y_train)  # apply scaling on training data
 pipe.score(X_val, y_val) 
 ```
 
-Pada code diatas, kita menggunakan teknik pipelining dimana sebelum data masuk ke model LogisticRegression(), data di-scaling terlebih dahulu dengan metode standar. Hal ini agar data memiliki memiliki jarak yang lebih pendek. Scaling perlu dilakukan bila nilai dari fitur-fitur yang ada memiliki rentang yang teramat jauh satu sama lain. Terkadang bila kita tidak melakukan scaling, model kita akan mengalami crash secara komputasional.
+Pada code diatas, kita menggunakan teknik *pipelining* dimana sebelum data masuk ke model LogisticRegression(), data di-*scaling* terlebih dahulu dengan metode standar. Hal ini agar data memiliki memiliki jarak yang lebih pendek. *Scaling* perlu dilakukan bila nilai dari fitur-fitur yang ada memiliki rentang yang teramat jauh satu sama lain. Terkadang bila kita tidak melakukan scaling, model kita akan mengalami *crash* secara komputasional.
 
-Pertama-tama kita membuat object pipe dengan fungsi make_pipeline() dan memasukkan parameter-parameter berupa object StandardScaler() serta LogisticRegression(). Jadi dimasukkan object scaler dan modelnya. Untuk object modelnya, kita menggunakan solver default yaitu "lbfgs". Kelas LogisticRegression memiliki beberapa solver, antara lain: newton-cg, lbfgs, liblinear, sag, saga. Kita memilih lbfgs mengingat ukuran data yang tidak terlalu besar.
+Pertama-tama kita membuat object *pipe* dengan fungsi make_pipeline() dan memasukkan parameter-parameter berupa object StandardScaler() serta LogisticRegression(). Jadi dimasukkan object *scaler* dan modelnya. Untuk object modelnya, kita menggunakan *solver default* yaitu "lbfgs". Kelas LogisticRegression memiliki beberapa *solver*, antara lain: newton-cg, lbfgs, liblinear, sag, saga. Kita memilih lbfgs mengingat ukuran data yang tidak terlalu besar.
 
-Langkah berikutnya kita lakukan training pada pemodelan ini. Namun berbeda dengan training langsung, training menggunakan teknik pipeline ini yang kita gunakan adalah object pipe-nya, sedangkan fungsi yang dipanggil untuk menjalankan training namanya tetap sama yaitu fungsi fit(). Parameter yang dimasukkan adalah data X_train yang berisi data dengan berbagai fitur / variabel independen, serta y_train yang berisi dependen variabel yang menjadi nilai acuan aktual.
+Langkah berikutnya kita lakukan training pada pemodelan ini. Namun berbeda dengan training langsung, training menggunakan teknik *pipeline* ini yang kita gunakan adalah object *pipe*-nya, sedangkan fungsi yang dipanggil untuk menjalankan training namanya tetap sama yaitu fungsi fit(). Parameter yang dimasukkan adalah data X_train yang berisi data dengan berbagai fitur / variabel independen, serta y_train yang berisi dependen variabel yang menjadi nilai acuan aktual.
 
-Langkah terakhir adalah mencetak score dari hasil training dengan pemanggilan fungsi pipe.score() dan memasukkan parameter data testing X_val yang berisi variabel independen, dan y_val yang berisi variabel dependennya.
+Langkah terakhir adalah mencetak *score* dari hasil training dengan pemanggilan fungsi pipe.score() dan memasukkan parameter data testing X_val yang berisi variabel independen, dan y_val yang berisi variabel dependennya.
 
 ### 5.2. Random Forest
 Pemodelan kedua yang dipilih adalah *Random Forest*. Algoritma ini merupakan salah satu algoritma *Ensemble* dimana konsepnya adalah mengkombinasikan hasil dari beberapa algoritma yang dijalankan untuk mencari hasil yang optimal. Di *Random Forest*, beberapa *Decision Trees* dibuat kemudian untuk masalah klasifikasi, kelas-kelas yang banyak terpilih oleh semua *Decision Trees* akan dipilih, sedangkan untuk masalah regresi dipilih nilai rata-rata outputnya. Algoritma ini cenderung lebih baik daripada algoritma *Decision Trees* tunggal, dan mampu memperbaiki masalah *overfitting*-nya juga.
