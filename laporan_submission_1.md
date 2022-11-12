@@ -445,33 +445,33 @@ Langkah berikutnya kita lakukan training pada pemodelan ini. Namun berbeda denga
 Langkah terakhir adalah mencetak score dari hasil training dengan pemanggilan fungsi pipe.score() dan memasukkan parameter data testing X_val yang berisi variabel independen, dan y_val yang berisi variabel dependennya.
 
 ### 5.2. Random Forest
-Pemodelan kedua yang dipilih adalah Random Forest. Algoritma ini merupakan salah satu algoritma Ensemble dimana konsepnya adalah mengkombinasikan hasil dari beberapa algoritma yang dijalankan untuk mencari hasil yang optimal. Di Random Forest, beberapa Decision Trees dibuat kemudian untuk masalah klasifikasi, kelas-kelas yang banyak terpilih oleh semua Decision Trees akan dipilih, sedangkan untuk masalah regresi dipilih nilai rata-rata outputnya. Algoritma ini cenderung lebih baik daripada algoritma Decision Trees tunggal, dan mampu memperbaiki masalah overfittingnya juga.
+Pemodelan kedua yang dipilih adalah *Random Forest*. Algoritma ini merupakan salah satu algoritma *Ensemble* dimana konsepnya adalah mengkombinasikan hasil dari beberapa algoritma yang dijalankan untuk mencari hasil yang optimal. Di *Random Forest*, beberapa *Decision Trees* dibuat kemudian untuk masalah klasifikasi, kelas-kelas yang banyak terpilih oleh semua *Decision Trees* akan dipilih, sedangkan untuk masalah regresi dipilih nilai rata-rata outputnya. Algoritma ini cenderung lebih baik daripada algoritma *Decision Trees* tunggal, dan mampu memperbaiki masalah *overfitting*-nya juga.
 
 **Kelebihan**
 
-- Random Forest dapat digunakan untuk tugas klasifikasi dan regresi.
-- Random Forest bekerja dengan baik dengan data kategorikal dan numerik. Biasanya tidak diperlukan penskalaan atau transformasi variabel.
-- Random Forest secara implisit melakukan pemilihan fitur dan menghasilkan Decision Trees yang tidak berkorelasi. Ini dilakukan dengan memilih serangkaian fitur acak untuk membangun setiap Decision Trees. Ini juga menjadikannya model yang hebat ketika Anda harus bekerja dengan sejumlah besar fitur dalam data.
-- Random Forest tidak dipengaruhi oleh outlier sampai tingkat yang wajar. Ini dilakukan dengan menggabungkan variabel.
-- Random Forest dapat menangani hubungan linier dan non-linier dengan baik.
-- Random Forest umumnya memberikan akurasi tinggi dan menyeimbangkan trade-off bias-varians dengan baik. Karena prinsip model adalah untuk merata-ratakan hasil di beberapa Decision Trees yang dibuatnya, model ini juga meratakan variansnya.
+- *Random Forest* dapat digunakan untuk tugas klasifikasi dan regresi.
+- *Random Forest* bekerja dengan baik dengan data kategorikal dan numerik. Biasanya tidak diperlukan penskalaan atau transformasi variabel.
+- *Random Forest* secara implisit melakukan pemilihan fitur dan menghasilkan *Decision Trees* yang tidak berkorelasi. Ini dilakukan dengan memilih serangkaian fitur acak untuk membangun setiap *Decision Trees*. Ini juga menjadikannya model yang hebat ketika kita harus bekerja dengan sejumlah besar fitur dalam data.
+- *Random Forest* tidak dipengaruhi oleh *outlier* sampai tingkat yang wajar. Ini dilakukan dengan menggabungkan variabel.
+- *Random Forest* dapat menangani hubungan linier dan non-linier dengan baik.
+- *Random Forest* umumnya memberikan akurasi tinggi dan menyeimbangkan *trade-off* bias-variansi dengan baik. Karena prinsip model adalah untuk merata-ratakan hasil di beberapa *Decision Trees* yang dibuatnya, model ini juga meratakan variansinya.
 
 **Kekurangan**
 
-- Random Forest tidak mudah ditafsirkan. Mereka memberikan kepentingan fitur tetapi tidak memberikan visibilitas lengkap ke dalam koefisien sebagai regresi linier.
-- Random Forest dapat secara komputasi intensif untuk kumpulan data besar.
-- Random Forest seperti algoritma black box, Anda hanya memiliki sedikit kendali atas apa yang dilakukan model.
+- *Random Forest* tidak mudah ditafsirkan. Mereka mengungkapkan tingkat kepentingan suatu fitur tetapi tidak memberikan visibilitas lengkap ke dalam koefisiennya sebagai regresi linier.
+- *Random Forest* membutuhkan proses komputasi intensif untuk kumpulan data besar.
+- *Random Forest* bekerja seperti algoritma *black box*, kita hanya memiliki sedikit kendali atas apa yang dilakukan model.
 
 (Jagandeep Singh, 2020)
 
-Berikut code dari model Random Forest dalam Python.
+Berikut code dari model *Random Forest* dalam Python.
 
 ```python
 RF = RandomForestRegressor(n_estimators=50, max_depth=12, random_state=55, n_jobs=-1)
 RF.fit(X_train, y_train)
  ```
 
-Pada pemodelan dengan algoritma Random Forest ini, kita membuat terlebih dulu object RandomForestRegressor dengan menentukan nilai awal beberapa parameter berikut:
+Pada pemodelan dengan algoritma *Random Forest* ini, kita membuat terlebih dulu object RandomForestRegressor dengan menentukan nilai awal beberapa parameter berikut:
 
 n_estimators = 50
 
@@ -492,44 +492,44 @@ n_jobs menyatakan jumlah *jobs* yang akan dijalankan secara parallel ketika mela
 Langkah berikutnya adalah melakukan training model dengan menggunakan data training. Parameter yang dimasukkan adalah X_train yang memuat variabel independen, serta y_train yang memuat variabel dependennya.
 
 ### 5.3. Boosting 
-Pemodelan ketiga yang dipilih adalah Boosting. Algoritma ini mengkombinasikan beberapa algoritma "learners" yang ujungnya diharapkan mampu menghasilkan keluaran yang kuat. Di dalam algoritma Boosting ini dikombinasikan beberapa algoritma yang masing-masing punya kelebihan dan kekurangan, dimana diharapkan kombinasi antara "learners" yang lemah dan kuat akan menghasilkan keluaran prediksi yang lebih tepat.
+Pemodelan ketiga yang dipilih adalah *Boosting*. Algoritma ini mengkombinasikan beberapa algoritma *learners* yang ujungnya diharapkan mampu menghasilkan keluaran yang kuat. Di dalam algoritma *Boosting* ini dikombinasikan beberapa algoritma yang masing-masing punya kelebihan dan kekurangan, dimana diharapkan kombinasi antara *learners* yang lemah dan kuat akan menghasilkan keluaran prediksi yang lebih tepat.
 
 **Kelebihan**
 
-- Boosting hadir dengan algoritme yang mudah dibaca dan ditafsirkan, membuat interpretasi prediksinya mudah ditangani.
-- Kemampuan prediksinya efisien melalui penggunaan metode kloningnya, seperti bagging atau Random Forest dan Decision Trees. 
-- Boosting adalah metode cukup handal untuk mengantisipasi over-fitting dengan mudah.
+- *Boosting* hadir dengan algoritme yang mudah dibaca dan ditafsirkan, membuat interpretasi prediksinya mudah ditangani.
+- Kemampuan prediksinya efisien melalui penggunaan metode kloningnya, seperti bagging atau *Random Forest* dan *Decision Trees*. 
+- *Boosting* adalah metode cukup handal untuk mengantisipasi *over-fitting* dengan mudah.
 
 **Kekurangan**
 
-- Metode ini sensitif terhadap outlier karena setiap classifier berkewajiban untuk memperbaiki kesalahan pada pendahulunya.
+- Metode ini sensitif terhadap outlier karena setiap *classifier* berkewajiban untuk memperbaiki kesalahan pada pendahulunya.
 - Kerugian lain adalah bahwa metode ini hampir tidak mungkin untuk ditingkatkan. Hal ini karena setiap estimator mendasarkan kebenarannya pada prediktor sebelumnya, sehingga membuatnya sulit untuk disederhanakan.
 
 (CFI Team, 2022)
 
-Berikut code dari model Boosting dalam Python.
+Berikut code dari model *Boosting* dalam Python.
 
 ```python
 boosting = AdaBoostRegressor(learning_rate=0.05, random_state=55)                             
 boosting.fit(X_train, y_train)
 ```
 
-Untuk pemodelan dengan algoritma boosting kali ini kita menggunakan object AdaBoostRegressor. Parameter yang dipakai dalam pembentukan object-nya antara lain:
+Untuk pemodelan dengan algoritma *boosting* kali ini kita menggunakan object AdaBoostRegressor. Parameter yang dipakai dalam pembentukan object-nya antara lain:
 
 learning_rate = 0.05
 
-learning_rate adalah bobot yang diterapkan pada setiap regressor pada setiap iterasi boosting. Nilai *learning rate* yang lebih tinggi meningkatkan kontribusi setiap regressor. Idealnya nilai ini diatur di posisi < 0.1.
+learning_rate adalah bobot yang diterapkan pada setiap *regressor* pada setiap iterasi *boosting*. Nilai *learning rate* yang lebih tinggi meningkatkan kontribusi setiap *regressor*. Idealnya nilai ini diatur di posisi < 0.1.
 
 random_state = 55
 
-random_state menyatakan tingkat keacakan yang diinginkan di setiap estimator yang dipakai di dalam model Boosting.
+random_state menyatakan tingkat keacakan yang diinginkan di setiap estimator yang dipakai di dalam model *Boosting*.
 
 Langkah berikutnya adalah melakukan training model dengan menggunakan data X_train yang berisi kumpulan variabel independen dan y_train yang berisi variabel dependennya.
 
 ## 6. Evaluation
-Evaluasi kinerja pemodelan machine learning dilakukan dengan beberapa cara.
+Evaluasi kinerja pemodelan *machine learning* dilakukan dengan beberapa cara.
 
-Pada tahapan evaluasi ini pemodelan dengan menggunakan Logistic Regression diukur kinerjanya dengan beberapa metriks. Berikut ini penjelasannya:
+Pada tahapan evaluasi ini pemodelan dengan menggunakan *Logistic Regression* diukur kinerjanya dengan beberapa metriks. Berikut ini penjelasannya:
 
 ### 6.1. **Mean Squared Error (MSE)** 
   
@@ -557,7 +557,7 @@ Dari hasil training ketiga pemodelan tersebut, terlihat bahwa pemodelan *Random 
 | False Negative   | 1                   | 12                | 1                 |
 | True Negative    | 85                  | 74                | 85                |
 
-Dari tabel confusion matrix diatas, terlihat bahwa pemodelan *Logistic Regression* dan *Boosting* menghasilkan matriks yang serupa. Ini akan menghasilkan angka-angka akurasi, presisi dan sensitivitas yang serupa pula. Dalam kasus ini untuk menentukan mana yang lebih unggul, kita dapat lebih lanjut melihat nilai AUC dari kurva ROC-nya.
+Dari tabel *confusion matrix* diatas, terlihat bahwa pemodelan *Logistic Regression* dan *Boosting* menghasilkan matriks yang serupa. Ini akan menghasilkan angka-angka akurasi, presisi dan sensitivitas yang serupa pula. Dalam kasus ini untuk menentukan mana yang lebih unggul, kita dapat lebih lanjut melihat nilai AUC dari kurva ROC-nya.
 
 ### 6.2.b. **Akurasi** 
   
@@ -628,7 +628,7 @@ Dari tabel confusion matrix diatas, terlihat bahwa pemodelan *Logistic Regressio
 
 ## 7. Kesimpulan
 
-Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (Logistic Regression, Random Forest dan Boosting) adalah bahwa algoritma Boosting memiliki kinerja yang paling optimal diantara ketiganya. Dengan skor akurasi, presisi dan sensitivitas serta AUC yang sama dengan Logistic Regression, Boosting menghasilkan nilai MSE yang lebih kecil. Sedangkan Random Forest kinerjanya masih berada dibawah dari kedua model lainnya.
+Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (*Logistic Regression*, *Random Forest* dan *Boosting*) adalah bahwa algoritma *Boosting* memiliki kinerja yang paling optimal diantara ketiganya. Dengan skor akurasi, presisi dan sensitivitas serta AUC yang sama dengan *Logistic Regression*, *Boosting* menghasilkan nilai MSE yang lebih kecil. Sedangkan *Random Forest* kinerjanya masih berada dibawah dari kedua model lainnya.
 
 ## 8. Referensi:
 
