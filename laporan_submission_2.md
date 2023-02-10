@@ -1,101 +1,64 @@
-# Laporan Proyek Machine Learning - Cornelius Mellino Sarungu
+# Laporan Proyek Machine Learning Terapan - Cornelius Mellino Sarungu
+# Topik 2: Recommender System
 
 ## 1. Domain Proyek
 
-Proyek *machine learning* terapan kali ini adalah membuat satu pemodelan yang mampu memprediksi kelayakan pemberian persetujuan kredit pemilikan rumah (KPR) untuk pengajuan yang diproses. Beberapa variabel atau fitur menjadi elemen dari inputan pemodelan yang dibangun.
+Proyek *machine learning* terapan kali ini adalah membuat satu *recommender system* yang dapat memberi rekomendasi film kepada para user dari sebuah penyedia konten film yang berbasis *subscription*. Sistem pemberi rekomendasi adalah sistem yang membantu pengguna menemukan item yang mungkin mereka sukai [1]. Pada sebuah penyedia konten film atau video, implementasi *recommender system* akan sangat membantu pengguna dalam menentukan pilihan konten berikutnya yang akan langsung ditonton atau disimpan ke dalam *watch later* dan ditonton kemudian. Rekomendasi yang diberikan tentu saja harus memperhatikan beberapa faktor, antara lain preferensi pengguna. Indikator-indikator preferensi ini dapat dibaca dari aspek-aspek seperti genre yang menjadi favorit, rating yang diberikan, durasi tonton dan sebagainya.
 
-- Proses kredit adalah proses meminjamkan sejumlah dana kepada seseorang atau lembaga supaya mereka dapat memenuhi kebutuhannya dengan dana tersebut. Untuk kredit yang mentarget perseorangan disebut juga sebagai kredit *retail*, sedangkan yang mentargetkan perusahaan atau lembaga disebut sebagai kredit korporasi. Dalam pengajuannya, terdapat banyak hal yang perlu dipertimbangkan. Bahkan untuk beberapa jenis kredit membutuhkan agunan / jaminan berupa aset yang variasinya juga beragam. Untuk kredit pemilikan rumah (KPR) misalnya, rumah yang kita cicil akan secara otomatis menjadi jaminan dan sertifikatnya dipegang oleh pihak pemberi kredit sampai cicilan tersebut lunas (Suyatno, 2007). 
+Netflix, sebagai salah satu *provider* konten film yang cukup besar, menerapkan *recommender system* sebagai salah satu ujung tombak di dalam layanannya [2]. Di satu bagian situs web-nya, Netflix menjelaskan bahwa mereka memperkirakan pilihan film-film berikutnya dari pengguna dengan menggunakan beberapa faktor sebagai acuan, seperti berikut:
+   * Riwayat menonton pengguna.
+   * Riwayat penilaian pengguna terhadap film-film yang ada.
+   * Data pengguna lain yang memiliki preferensi serupa.
+   * Informasi judul, genre, kategori, aktor, tahun rilis.
 
-- Namun baik pengajuan kredit retail maupun korporasi, keduanya harus melewati serangkaian proses sebelum sampai ke tahap persetujuan. Rangkaian proses tersebut diantaranya antara lain pemeriksaan latar belakang, pemeriksaan skor kelayakan berdasarkan variabel-variabel yang didapat informasinya dari form yang diisi oleh nasabah, pemeriksaan skor kelayakan dari pihak ketiga seperti Pefindo untuk di Indonesia, pemeriksaan kelengkapan dokumen, validasi biometrik. Setelah semua pemeriksaan tadi menghasilkan nilai positif, maka pengajuan kredit dapat ditetapkan sebagai layak atau *eligible* untuk dipenuhi (Hasibuan, 2008).
+Mengapa *recommender system* penting bagi bisnis, terutama yang menawarkan spektrum ragam produk yang luas? Kita perlu memahami bahwa dalam samudera informasi yang berlebihan ini, sebuah *filter* yang membantu kita (baca: *customer*) dalam menemukan informasi yang tepat dan sesuai dengan keinginan kita adalah sebuah alat bantu yang luar biasa. Hal itu akan sangat membantu kita mempersingkat waktu pencarian. Selain itu dari sisi penyedia informasi, semakin cepatnya *customer* menemukan item yang tepat sesuai keinginannya, semakin cepat pula mereka merealisasikan transaksi, dan itu artinya semakin cepat pula *revenue* mengalir masuk dan *profit* didapatkan [3].
 
 ## 2. Business Understanding
 
-Dalam pengajuan kredit, baik manual (*paper based*) dan *online*, semuanya harus melalui serangkaian pengecekan data, analisa dan *scoring* untuk menentukan kelayakannya untuk disetujui. Hal yang menentukan kelayakan tersebut biasanya berupa serangkaian variabel yang harus diisi nilainya saat nasabah mengisi form pengajuannya. 
-
-- Dalam melakukan sebuah pengajuan kredit, nasabah harus mengisi *form* pengajuan yang biasanya memiliki banyak kolom yang harus diisi. *Form* pengajuan kredit ini isinya meliputi: bio data, informasi tempat tinggal, informasi pekerjaan, informasi tempat kerja, informasi finansial (hutang, aset), informasi kontak terdekat, informasi perbankan (nomor rekening, kartu kredit), dokumen pelengkap. Sedangkan untuk kredit korporasi, biasanya harus mengajukan proposal kredit yang berisi kurang lebih informasi sebagai berikut: *executive summary* perusahaan, identitas dan struktur perusahaan, gambaran umum perusahaan, kondisi keuangan perusahaan, analisis industri, struktur  keuangan perusahaan, analisis proyeksi keuangan, jaminan kredit, lampiran (Jusuf, 2003).
-
-- *Eligibility* atau kelayakan dalam konteks persetujuan pemberian kredit amat penting bagi institusi finansial seperti bank dan koperasi yang menjalankan usaha simpan-pinjam. Proses manual memakan waktu cukup lama, dalam hitungan hari, yang tentu saja membuat customer menunggu. Persaingan penyedia layanan kredit online membuat para pemainnya berlomba-lomba memaksimalkan layanan bisnis mereka terutama pada peningkatan kecepatan proses persetujuan. Perlombaan di aspek ini memaksa para pemain tersebut melakukan eksplorasi teknologi *machine learning* dan *AI* untuk mempersingkat waktu, dan dalam waktu yang bersamaan mendapatkan akurasi yang tinggi akan keputusan persetujuan yang diambil. Akurasi yang tinggi diperlukan, karena kesalahan dalam pemberian keputusan kredit akan menimbulkan kerugian bagi penyedia jasa layanan kredit terkait (Amrin & Pahlevi, 2022). Baik salah menyetujui nasabah yang tidak layak diberi kredit (*false positive*), maupun tidak menyetujui nasabah yang layak diberi kredit (*false negative*), semuanya sama-sama membuka potensi kerugian (Amrin & Pahlevi, 2022). Dengan solusi implementasi model *machine learning* diharapkan penentuan eligibilitas ini mampu dipercepat hingga hitungan menit, tentu saja dengan mempertimbangkan fitur-fitur yang esensial. Dalam pemodelan yang dilakukan kali ini, dicoba untuk mengimplementasikan beberapa algoritma untuk pemodelan antara lain: *Logistic Regression*, *Random Forest* dan *Boosting* yang semuanya mampu memberikan *output* yang mewakili keputusan disetujui (1) atau ditolak (0).
-
 ### 2.1. Problem Statements
 
-Poin-poin masalah yang terdapat di proses pengajuan kredit antara lain:
+Poin-poin masalah yang muncul di penyedia layanan konten film antara lain:
 
-- Pemrosesan form pengajuan kredit yang membutuhkan waktu yang cukup lama. Lamanya waktu proses semenjak form disubmit sampai diterimanya notifikasi disetujui / ditolak oleh nasabah menjadi salah satu titik penting dalam persaingan layanan pemberian kredit. Dari sisi nasabah semakin cepat tentu saja akan semakin menaikkan tingkat kepuasan terhadap layanan tersebut. Sedangkan dari sisi institusi finansial, meningkatnya kecepatan akan menaikkan nilai *competitiveness* dari layanannya di arena bisnis terkait.
+- Masifnya jumlah konten yang ada dalam database penyedia layanan konten film dapat membuat *customer* mengalami *information overwhelmed* ketika mencari apa yang mereka butuhkan. Bila hal ini muncul, menurut Khasada et al. (2020), efek yang akan muncul antara lain adalah [4]:
+   * Turunnya kinerja dalam mengerjakan sesuatu.
+   * Semakin lamanya proses pengambilan keputusan secara individual.
+   * Menaikkan tingkat *stress*.
+   * Membawa dampak negatif secara psikologis bagi individu.
 
-- Akurasi keputusan persetujuan pemberian kredit menjadi hal yang sangat penting bagi institusi finansial penyedia layanan tersebut. Kesalahan dalam pemberian persetujuan akan membawa kerugian finansial bagi institusi tersebut. Bila ternyata kredit disetujui namun nasabah tidak mampu mengembalikan maka akan membawa kerugian finansial yang nyata, bila kredit tidak disetujui padahal nasabah seharusnya layak untuk diberi dan memiliki kemampuan untuk mengembalikan pinjamannya maka akan membawa kerugian berupa *loss of opportunity* bagi institusi penyedia layanan kredit.
+Tentu saja apabila hal ini sampai terjadi pada *customer* sebuah bisnis, maka dampaknya akan luar biasa negatif. Semua itu akan bermuara pada menurunnya pemakaian oleh pengguna, menurunnya jumlah pengguna, tidak adanya lagi pengguna baru, menurunnya transaksi, yang akan menurunkan tingkat penjualan (*sales*), dan artinya penurunan *revenue* serta *profit* bagi perusahaan.
+
+- Pengambilan keputusan oleh *customer* yang menghadapi *information overwhelm* akan sangat lambat karena yang bersangkutan akan menghabiskan banyak waktu memilih produk dan item yang diinginkan dari sebegitu banyak item produk yang ada. *Search engine* biasa memang sangat membantu, namun *search engine* tidak dapat merekomendasikan item produk yang terbaik, konten film yang paling sesuai selera, yang paling mendekati preferensi *customer*. Tetap saja *customer* perlu mengalokasikan waktu yang cukup untuk memeriksa satu demi satu hasil pencarian dari *search engine* untuk menentukan mana item produk yang relevan dan tidak.
+
+- Semakin lama pengambilan keputusan oleh *customer*, mengakibatkan semakin tertundanya realisasi transaksi. Dampaknya adalah melambatnya *revenue stream* perusahaan. Bila pengambilan keputusan ini bisa dipercepat, diharapkan aliran *revenue stream* juga akan semakin meningkat kecepatannya.
 
 ### 2.2. Goals
 
-Tujuan dari implementasi solusi machine learning ini antara lain:
+Tujuan dari implementasi solusi *recommender system* ini antara lain:
 
-- Mempercepat pengajuan kredit dengan mengimplementasikan pemodelan machine learning berbasiskan beberapa algoritma pemodelan, antara lain *Logistic Regression*, *Random Forest* dan *Boosting*. Ketiga algoritma tersebut akan diperbandingkan kinerjanya dan akan diulas kelebihan maupun kekurangannya.
+- Mengurangi beban *customer* dalam melakukan pencarian produk yang relevan dengan preferensi mereka. Diharapkan dengan penerapan *recommender system* ini *customer* mendapatkan *tool* yang sangat membantu dalam melakukan pemilihan item produk yang sesuai keinginan mereka dengan cepat dan kepuasan mereka dalam memakai aplikasi penyedia konten film ini dapat meningkat lagi.
 
-- Mencari algoritma pemodelan yang memiliki tingkat akurasi paling tinggi, serta memiliki nilai optimal untuk aspek penilaian lainnya yang dapat membantu institusi pemberi layanan kredit dalam pemberian persetujuan kepada pengajuan yang diajukan oleh para nasabah. Hal ini juga tentunya akan membantu menekan risiko kerugian yang mungkin terjadi di masa depan nantinya.
+- Mempercepat proses pengambilan keputusan oleh *customer*, sehingga realisasi transaksi dapat terjadi lebih cepat lagi.
+
+- Meningkatnya proses pengambilan keputusan dalam merealisasikan transaksi akan mempercepat aliran *revenue stream* perusahaan.
 
 ### 2.3. Solution specifications
-  Implementasi pemodelan *machine learning* untuk memprediksi nilai kelayakan pengajuan kredit kali ini memiliki spesifikasi sebagai berikut:
+  Implementasi pemodelan *recommender system* untuk menghasilkan rekomendasi konten yang relevan sesuai preferensi *customer* ini memiliki spesifikasi sebagai berikut:
   
-  - Mengimplementasikan pemodelan menggunakan tiga buah algoritma: *Logistic Regression*, *Random Forest* dan *Boosting*.
+  - Mengimplementasikan solusi *recommendation system* berjenis *user based collaborative recommender system*.
   
-  - Penilaian performa terhadap ketiga pemodelan yang akan dibuat menggunakan beberapa buah metrik/metode pengukuran, antara lain sebagai berikut:
+  - *Recommender system* menerima *input* user ID.
+  
+  - *Recommender system* menghasilkan daftar film yang direkomendasikan bagi user yang user ID nya dimasukkan sebagai *input*.
 
-    a. **Mean Squared Error (MSE)** 
-    
-    - Metrik ini mengkuadratkan perbedaan nilai antara prediksi dan aktual, lalu mengambil nilai akhir rata-ratanya (Bickel, 2015).
+  -  Algoritma yang dipakai untuk menghitung *similarity* adalah Euclidian Distance.
 
-       - Rumus MSE adalah sebagai berikut:
-
-            $MSE = \frac{1}{n} \Sigma_{i=1}^n({y}-\hat{y})^2$
-
-    b. **Confusion Matrix** 
-    
-    - Matrix ini memetakan hasil prediksi ke dalam beberapa kategori, antara lain:
-       
-       |                | Nilai Prediksi | Nilai Aktual |
-       |----------------|----------------|--------------|
-       | True Positive  | 1              | 1            |
-       | False Positive | 0              | 0            |
-       | False Negative | 1              | 0            |
-       | True Negative  | 0              | 1            |
-       
-    - Berikut ini adalah pemetaan dari confusion matrix:
-
-       | Total Poulation    | (Predicted)  Positive | (Predicted)  Negative |
-       |--------------------|-----------------------|-----------------------|
-       | (Actual)  Positive | True Positive (TP)    | False Negative (FN)   |
-       | (Actual)  Negative | False Positive (FP)   | True Negative (TN)    |
-
-
-    - **Akurasi** 
-       
-       - Akurasi diukur dengan rumus berikut:
-
-          $accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}$
-       
-    - **Presisi** 
-       
-       - Presisi diukur dengan rumus berikut:
-       
-          $precision = \frac{TP}{(TP + FP)}$
-       
-    - **Sensitivitas / Recall** 
-       
-       - Sensitivitas diukur dengan rumus berikut:
-       
-          $sensitivity = \frac{TP}{(TP + FN)}$
-    
-    c. **Area Under Curve (AUC)** 
-
-    - Area dibawah kurva (area under the curve) atau yang disebut juga dengan auc dipakai sebagai ukuran untuk menilai baik atau buruknya suatu model. AUC mendekati 1 berarti bahwa model tersebut memiliki performa baik, sedangkan AUC mendekati 0.5 menandakan bahwa model memiliki performa buruk. Kurva disini adalah kurva ROC. Dari Gambar 1 dapat dilihat bahwa semakin cembung kurva ROC maka menunjukkan kinerja model semakin bagus, artinya semakin banyak hasil prediksi yang tepat. Sedangkan semakin linear kurva ROC nya, maka menunjukkan kinerja model semakin jelek. Namun perlu diketahui juga apabila nilai AUC ini terlalu mendekati 1 maka menandakan kemungkinan terjadinya overfitting di dalam pemodelan yang kita buat [2].
-
-      |[<img src="/assets/images/roc_curve.png"/>](/assets/images/roc_curve.png)|
-      |:--:| 
-      | *Gambar 1. Kurva ROC. (Sumber: Wikipedia)* |
 
 ## 3. Data Understanding
-Data yang dipakai pada proyek ini adalah *Loan Eligible Dataset* dari Kaggle oleh Vikas Ukani (https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset).
+Data yang dipakai pada proyek ini adalah *Movie Dataset* dari Kaggle oleh Shinigami (https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset) [5].
 
-Data tersebut adalah data dari perusahaan Dream Housing Finance yang menangani semua pinjaman KPR. Mereka hadir di semua wilayah perkotaan, semi-perkotaan, dan pedesaan. Pelanggan pertama-tama mengajukan pinjaman KPR setelah itu perusahaan memvalidasi kelayakan pelanggan untuk pinjaman.
+*Movie dataset* ini terdiri dari dua buah file .csv, yaitu movies.csv dan ratings.csv. Pada movies.csv berisi data tentang film yang jumlahnya sekitar 9737 buah, lengkap dengan klasifikasi genrenya. Sedangkan pada ratings.csv berisi data *rating* yang diberikan oleh sekitar 610 *user* dengan jumlah total rating yang diberikan sekitar 194.000-an.
+
+
 
 
 
@@ -116,30 +79,18 @@ Evaluasi kinerja pemodelan *machine learning* dilakukan dengan beberapa cara.
 
 ## 7. Kesimpulan
 
-Kesimpulan dari perbandingan evaluasi kinerja dari ketiga model (*Logistic Regression*, *Random Forest* dan *Boosting*) adalah bahwa algoritma *Boosting* memiliki kinerja yang paling optimal diantara ketiganya. Dengan skor akurasi, presisi dan sensitivitas serta AUC yang sama dengan *Logistic Regression*, *Boosting* menghasilkan nilai MSE yang lebih kecil. Sedangkan *Random Forest* kinerjanya masih berada dibawah dari kedua model lainnya.
+
 
 ## 8. Referensi:
 
-  [1] A. Amrin and O. Pahlevi, “Implementation of logistic regression classification algorithm and support vector machine for credit eligibility prediction,” Journal of Informatics and Telecommunication Engineering, vol. 5, no. 2, pp. 433–441, 2022. 
-
-  [2] D. Kurniawan, Pengenalan Machine Learning dengan Python. Jakarta, Indonesia: Elex Media, 2021. 
-
-  [3] Kasmir, Bank  dan  Lembaga  Keuangan  lainnya, Edisi Revisi. Jakarta, Indonesia: PT  Raja Grafindo Persada, 2014. 
+  [1] M. Longo, “The what, why and how of Recommendation Systems,” Medium, 18-Apr-2018. [Online]. Available: https://medium.com/retargetly/the-what-why-and-how-of-recommendation-systems-810d98789f83. [Accessed: 10-Feb-2023].
   
-  [4] L. Zhao, S. Lee, and S.-P. Jeong, “Decision tree application to classification problems with boosting algorithm,” Electronics, vol. 10, no. 16, p. 1903, Aug. 2021, doi: 10.3390/electronics10161903.
+  [2] Netflix, “How netflix's recommendations System Works,” Help Center. [Online]. Available: https://help.netflix.com/en/node/100639. [Accessed: 10-Feb-2023]. 
 
-  [5] M. Gopinath, K. Srinivas Shankar Maheep, and R. Sethuraman, “Customer loan approval prediction using logistic regression,” Advances in Parallel Computing, 2021. 
-
-  [6] M. Yarmolenko and B. Howlin, “Extreme Gradient boosting algorithm classification for predicting lifespan-extending chemical compounds,” 2022. 
-
-  [7] M. S. P. Hasibuan, Dasar-dasar Perbankan. Jakarta, Indonesia: PT. Grafindo, 2008. 
+  [3] F. O. Isinkaye, Y. O. Folajimi, and B. A. Ojokoh, “Recommendation systems: Principles, methods and evaluation,” Egyptian Informatics Journal, vol. 16, no. 3, pp. 261–273, 2015. 
   
-  [8] J. Jusuf, Kiat Jitu Memperoleh Kredit Bank. Jakarta, Indonesia: Elex Media, 2003. 
-
-  [9] P. J. Bickel and K. A. Doksum, Mathematical Statistics: Basic Ideas and Selected Topics, vol. 1, 2 vols. CRC Press, 2015. 
-
-  [10] T. Suyatno, Kelembagaan  Perbankan. Jakarta, Indonesia: PT.  Gramedia Pustaka Utama, 2007. 
-
-  [11] V. Ukani, Loan eligibility dataset, 2020. [Online]. Available: https://www.kaggle.com/datasets/vikasukani/loan-eligible-dataset. [Accessed: 04-Nov-2022]. 
+  [4] A. Kashada, A. Isnoun, and N. Aldali, “Effect of Information Overload on Decision's Quality, Efficiency and Time,” International Journal of Latest Engineering Research and Applications (IJLERA), vol. 05, no. 1, pp. 53–58, Jan. 2020. 
   
-  [12] V. Ukani, Loan eligibility machine learning, 2020. [Online]. Available: https://www.kaggle.com/code/vikasukani/loan-eligibility-prediction-machine-learning. [Accessed: 16-Oct-2022]. 
+  [5] Shinigami, “Movie recommender system dataset,” Kaggle, 02-May-2021. [Online]. Available: https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset. [Accessed: 10-Feb-2023]. 
+  
+  [6] John S. Breese, David Heckerman, and Carl Kadie. 1998. Empirical analysis of predictive algorithms for collaborative filtering. In Proceedings of the Fourteenth conference on Uncertainty in artificial intelligence (UAI'98). Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 43–52.
