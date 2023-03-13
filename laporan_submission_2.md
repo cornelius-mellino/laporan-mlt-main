@@ -56,9 +56,38 @@ Tujuan dari implementasi solusi *recommender system* ini antara lain:
 ## 3. Data Understanding
 Data yang dipakai pada proyek ini adalah *Movie Dataset* dari Kaggle oleh Shinigami (https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset) [5].
 
-*Movie dataset* ini terdiri dari dua buah file .csv, yaitu movies.csv dan ratings.csv. Pada movies.csv berisi data tentang film yang jumlahnya sekitar 9737 buah, lengkap dengan klasifikasi genrenya. Sedangkan pada ratings.csv berisi data *rating* yang diberikan oleh sekitar 610 *user* dengan jumlah total rating yang diberikan sekitar 194.000-an.
+*Movie dataset* ini terdiri dari dua buah file .csv, yaitu movies.csv dan ratings.csv. Pada movies.csv berisi data tentang film yang jumlahnya sekitar 9737 buah, lengkap dengan klasifikasi genrenya. Sedangkan pada ratings.csv berisi data *rating* yang diberikan oleh sekitar 610 *user* dengan jumlah total rating yang diberikan sekitar 100.000-an.
 
+Untuk eksperimen ini kita akan memakai sekitar 5000 data saja untuk menguji validitas dari algoritma yang akan kita terapkan.
 
+```python
+movies = movies[:5000]
+ ```
+
+### 3.1. Struktur data Movie
+Untuk struktur data dari dataframe movies adalah sebagai berikut:
+
+| # | Column  | Non-Null Count | Dtype  |
+|---|---------|----------------|--------| 
+| 0 | movieId | 9742 non-null  | int64  |
+| 1 | title   | 9742 non-null  | object |
+| 2 | genres  | 9742 non-null  | object |
+
+### 3.2. Struktur data Rating
+
+| # | Column    | Non-Null Count  | Dtype   |
+|---|-----------|-----------------|---------|  
+| 0 | userId    | 100836 non-null | int64   |
+| 1 | movieId   | 100836 non-null | int64   |
+| 2 | rating    | 100836 non-null | float64 |
+| 3 | timestamp | 100836 non-null | int64   |
+
+### 3.3. Porsi rating dalam keseluruhan Movies
+Dari diagram berikut kita dapat ketahui bahwa movies dengan nilai rating 4.0 memiliki porsi paling banyak di dalam database.
+
+|[<img src="/assets/images/movie1.png"/>](/assets/images/movie1.png)|
+|:--:| 
+| *Gambar 1. Porsi rating dalam keseluruhan movies.* |
 
 
 
@@ -72,7 +101,14 @@ Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum dipros
 
 
 ## 6. Evaluation
-Evaluasi kinerja pemodelan *machine learning* dilakukan dengan beberapa cara.
+Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini adalah aspek-aspek yang menjadi pertimbangan evaluasi kinerja:
+   1. *Processing speed*
+      Kecepatan proses memiliki poin penting dalam sebuah *recommender system*, apalagi yang berurusan dengan jumlah data yang besar dan tentu saja bertambah terus ukurannya dari waktu ke waktu. Maka dari itu baik algoritma berbasis perhitungan aljabar, statistik maupun *neural network* harus mempertimbangkan hal ini.
+
+      Pada eksperimen kali ini dengan ukuran data sebagai berikut:
+      * User = 66
+      * Movie = 2000
+      * 
 
 
 
