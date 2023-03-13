@@ -83,12 +83,18 @@ Untuk struktur data dari dataframe movies adalah sebagai berikut:
 | 3 | timestamp | 100836 non-null | int64   |
 
 ### 3.3. Porsi rating dalam keseluruhan Movies
-Dari diagram berikut kita dapat ketahui bahwa movies dengan nilai rating 4.0 memiliki porsi paling banyak di dalam database.
+Dari diagram berikut kita dapat ketahui bahwa movies dengan nilai rating 4.0 memiliki porsi paling banyak di dalam database, yaitu sekitar 24%.
 
 |[<img src="/assets/images/movie1.png"/>](/assets/images/movie1.png)|
 |:--:| 
 | *Gambar 1. Porsi rating dalam keseluruhan movies.* |
 
+### 3.4. Porsi rating dalam keseluruhan Users
+Dari diagram berikut kita dapat ketahui bahwa user paling banyak memberikan rating 4.0, yaitu sekitar 26%, kemudian disusul rating 3.0 dan 3.5, masing-masing 20% dan 13%.
+
+|[<img src="/assets/images/movie2.png"/>](/assets/images/movie2.png)|
+|:--:| 
+| *Gambar 1. Porsi rating dalam keseluruhan users.* |
 
 
 ## 4. Data Preparation
