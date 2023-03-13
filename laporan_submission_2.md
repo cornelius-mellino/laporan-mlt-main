@@ -96,6 +96,58 @@ Dari diagram berikut kita dapat ketahui bahwa user paling banyak memberikan rati
 |:--:| 
 | *Gambar 1. Porsi rating dalam keseluruhan users.* |
 
+### 3.5. Top 20 users pemberi rating terbanyak
+Berikut ini adalah daftar 20 user yang paling banyak memberikan rating, lengkap dengan jumlah penilaian yang sudah mereka berikan.
+
+|userId|  n  |
+|------|-----|
+|414   | 2698|
+|599   | 2478|
+|474   | 2108|
+|448   | 1864|
+|274   | 1346|
+|610   | 1302|
+|68    | 1260|
+|380   | 1218|
+|606   | 1115|
+|288   | 1055|
+|249   | 1046|
+|387   | 1027|
+|182   |  977|
+|307   |  975|
+|603   |  943|
+|298   |  939|
+|177   |  904|
+|318   |  879|
+|232   |  862|
+|480   |  836|
+
+### 3.6. Top 20 movies yang paling banyak dinilai oleh users
+Berikut ini adalah daftar 20 movies yang paling banyak dinilai oleh users.
+
+|movieId|  n |
+|-------|----|
+|356    | 329|
+|318    | 317|
+|296    | 307|
+|593    | 279|
+|2571   | 278|
+|260    | 251|
+|480    | 238|
+|110    | 237|
+|589    | 224|
+|527    | 220|
+|2959   | 218|
+|1      | 215|
+|1196   | 211|
+|50     | 204|
+|2858   | 204|
+|47     | 203|
+|780    | 202|
+|150    | 201|
+|1198   | 200|
+|4993   | 198|
+
 
 ## 4. Data Preparation
 Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
