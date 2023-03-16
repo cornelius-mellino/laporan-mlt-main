@@ -232,7 +232,7 @@ Inti dari model yang kita bangun pada eksperimen kali ini terdiri dari tiga buah
 ### 5.1. Fungsi movie_euclidian_distance()
 Fungsi ini memiliki kegunaan untuk menghitung jarak antar titik (item) dalam ruang berdimensi N. Semakin kecil (dekat) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin tinggi, begitu pula sebaliknya bila semakin besar (jauh) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin rendah.
 
-$$ sim(i,j) = \sqrt{ \sum_{n=1}^{n} \sqr($R_{k,i}-$R_{k,j})} $$
+$$ sim(i,j) = \sqrt{ \sum_{k=1}^{n} (R_{k,i}-R_{k,j})^2} $$
 
 ### 5.2. Fungsi get_similarities()
 
