@@ -231,8 +231,18 @@ Inti dari model yang kita bangun pada eksperimen kali ini terdiri dari tiga buah
 
 ### 5.1. Fungsi movie_euclidian_distance()
 Fungsi ini memiliki kegunaan untuk menghitung jarak antar titik (item) dalam ruang berdimensi N. Semakin kecil (dekat) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin tinggi, begitu pula sebaliknya bila semakin besar (jauh) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin rendah.
+Berikut ini adalah rumus untuk menghitung *euclidian distance*:
 
 $$ sim(i,j) = \sqrt{ \sum_{k=1}^{n} (R_{k,i}-R_{k,j})^2} $$
+
+Langkah-langkah algoritmanya adalah sebagai berikut:
+1. Cari movie(s) yang sama antara dua user yang berbeda.
+2. Bila tidak ada yang sama maka nilai euclidian distance = 0. Lompat ke langkah nomor 7.
+3. Bila terdapat satu atau lebih movie yang sama maka hitung perbedaan ratingnya untuk setiap kombinasi pasangan movie yang ada.
+4. Kuadratkan setiap hasil perhitungan perbedaan.
+5. Jumlahkan semua hasil kuadrat perbedaan yang ada.
+6. Cari akar dari nilai jumlah tersebut, didapatkanlah nilai *euclidian distance*-nya.
+7. Selesai.
 
 ### 5.2. Fungsi get_similarities()
 
