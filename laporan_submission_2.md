@@ -58,7 +58,7 @@ Data yang dipakai pada proyek ini adalah *Movie Dataset* dari Kaggle oleh Shinig
 
 *Movie dataset* ini terdiri dari dua buah file .csv, yaitu movies.csv dan ratings.csv. Pada movies.csv berisi data tentang film yang jumlahnya sekitar 9737 buah, lengkap dengan klasifikasi genrenya. Sedangkan pada ratings.csv berisi data *rating* yang diberikan oleh sekitar 610 *user* dengan jumlah total rating yang diberikan sekitar 100.000-an.
 
-Untuk eksperimen ini kita akan memakai sekitar 5000 data saja untuk menguji validitas dari algoritma yang akan kita terapkan.
+Untuk eksperimen ini kita akan memakai sekitar 10000 data saja untuk menguji validitas dari algoritma yang akan kita terapkan.
 
 ```python
 movies = movies[:5000]
@@ -94,7 +94,7 @@ Dari diagram berikut kita dapat ketahui bahwa user paling banyak memberikan rati
 
 |[<img src="/assets/images/movie2.png"/>](/assets/images/movie2.png)|
 |:--:| 
-| *Gambar 1. Porsi rating dalam keseluruhan users.* |
+| *Gambar 2. Porsi rating dalam keseluruhan users.* |
 
 ### 3.5. Top 20 users pemberi rating terbanyak
 Berikut ini adalah daftar 20 user yang paling banyak memberikan rating, lengkap dengan jumlah penilaian yang sudah mereka berikan.
@@ -148,15 +148,96 @@ Berikut ini adalah daftar 20 movies yang paling banyak dinilai oleh users.
 |1198   | 200|
 |4993   | 198|
 
+### 3.7. Periksa panjang asli dari data rating
+Dari pemanggilan fungsi len() berikut ini menghasilkan nilai 100836, yang merepresentasikan jumlah total data rating yang ada.
 
+```python
+len(rating)
+ ```
+ 
+### 3.8. Periksa jumlah user pemberi rating
+Dari pemanggilan fungsi len() berikut ini menghasilkan nilai 610, yang merepresentasikan jumlah total user yang ada.
+
+```python
+len(rating['userId'].unique())
+ ```
+s
 ## 4. Data Preparation
 Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
 
+### 4.1. Data slicing
+Untuk melakukan pengujian terhadap validitas algoritma yang kita terapkan, sebetulnya kita tidak perlu menggunakan data yang terlalu besar, cukup dengan sebagian porsi data saja. Lain halnya bila kita ingin menguji performa dari algoritmanya dimana kita perlu memasang beban yang cukup besar sampai teridentifikasi titik dadalnya (*breakdown point*).
+Pada eksperimen ini kita memakai sekitar 10% data saja, kira-kira 10.000 observasi atau baris.
 
+```python
+rating = rating[:10000]
+ ```
 
+### 4.2. Pemeriksaan 
+Setelah data kita potong, kita melakukan pemeriksaan terhadap beberapa elemen seperti jumlah user dan movies. Pemanggilan fungsi len() dan unique() terhadap fitur UserId dan MovieId seperti dibawah menghasilkan nilai 66 users dan 3218 movies.
+
+```python
+len(rating['userId'].unique())
+len(rating['movieId'].unique())
+ ```
+### 4.3. Penggabungan data
+Penggabungan data user dengan movies dengan menggunakan fungsi merge() dari library pandas.
+
+```python
+complete_df = pd.merge(rating, movies, how='inner', left_on = 'movieId', right_on = 'movieId')
+ ```
+Struktur data hasil penggabungan akan menjadi seperti berikut:
+ 
+| # |  Column  | Non-Null Count | Dtype  |
+|---|----------|----------------|--------|  
+| 0 | userId   |  7865 non-null | int64  |
+| 1 | movieId  |  7865 non-null | int64  |
+| 2 | rating   |  7865 non-null | float64|
+| 3 | timestamp|  7865 non-null | int64  |
+| 4 | title    |  7865 non-null | object |
+| 5 | genres   |  7865 non-null | object |
+
+### 4.4. Pemeriksaan duplikasi data
+Pemeriksaan duplikasi data penting dilakukan supaya tidak terjadi kesalahan dalam proses analisa atau pemrosesan melalui algoritma *machine learning*. Baris program berikut ini menghasilkan nilai 0, yang artinya tidak ada data yang terduplikasi.
+
+```python
+complete_df["duplicate"] = complete_df.duplicated()
+print(len(complete_df[complete_df["duplicate"] == True]))
+```
+
+### 4.5. Pemeriksaan *missing values*
+Pemeriksaan *missing values* dilakukan dengan memanggil fungsi isnull(). 
+
+```python
+complete_df.isnull().sum()
+```
+
+Baris program diatas menghasilkan keluaran sebagai berikut dibawah, yang artinya tidak terdapat *missing values*.
+
+userId       0
+movieId      0
+rating       0
+timestamp    0
+title        0
+genres       0
+duplicate    0
+dtype: int64
 
 ## 5. Modeling
+Inti dari model yang kita bangun pada eksperimen kali ini terdiri dari tiga buah fungsi, yaitu:
+* movie_euclidian_distance()
+* get_similarities()
+* get_recommendation()
 
+### 5.1. Fungsi movie_euclidian_distance()
+Fungsi ini memiliki kegunaan untuk menghitung jarak antar titik (item) dalam ruang berdimensi N. Semakin kecil (dekat) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin tinggi, begitu pula sebaliknya bila semakin besar (jauh) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin rendah.
+
+$$ sim(i,j) = \sqrt{ \sum_{n=1}^{n} \sqr($R_{k,i}-$R_{k,j})} $$
+
+### 5.2. Fungsi get_similarities()
+
+
+### 5.3. Fungsi get_recommendation()
 
 ## 6. Evaluation
 Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini adalah aspek-aspek yang menjadi pertimbangan evaluasi kinerja:
