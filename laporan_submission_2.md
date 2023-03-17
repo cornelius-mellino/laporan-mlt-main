@@ -73,6 +73,11 @@ Untuk struktur data dari dataframe movies adalah sebagai berikut:
 | 1 | title   | 9742 non-null  | object |
 | 2 | genres  | 9742 non-null  | object |
 
+Berikut penjelasan setiap kolomnya.
+1. movieId  - Kode mewakili identitas setiap movie.
+2. title    - Judul dari movie.
+3. genres   - Kategori genre atau kombinasi genre dari movie. Kombinasi dipisahkan dengan tanda '|'.
+
 ### 3.2. Struktur data Rating
 
 | # | Column    | Non-Null Count  | Dtype   |
@@ -81,6 +86,14 @@ Untuk struktur data dari dataframe movies adalah sebagai berikut:
 | 1 | movieId   | 100836 non-null | int64   |
 | 2 | rating    | 100836 non-null | float64 |
 | 3 | timestamp | 100836 non-null | int64   |
+
+Berikut penjelasan setiap kolomnya.
+1. userId   - Kode identitas user.
+2. movieId  - Kode identitas movie yang diberi rating oleh user terkait.
+3. rating   - Nilai rating yang diberikan. Berupa data interval bertipe bilangan riil, 1.0 - 5.0 dengan interval 0.5.
+3. timestamp- Timestamp waktu dari pemberian rating.
+
+Elemen data utama yang terlibat langsung dalam perhitungan algoritma *euclidian distance* adalah userId, movieId, dan rating.
 
 ### 3.3. Porsi rating dalam keseluruhan Movies
 Dari diagram berikut kita dapat ketahui bahwa movies dengan nilai rating 4.0 memiliki porsi paling banyak di dalam database, yaitu sekitar 24%.
@@ -271,6 +284,24 @@ Langkah-langkah algoritmanya adalah sebagai berikut:
 5. Urutkan secara *descending*.
 
 Di sini, semakin besar nilai indeks rekomendasi maka semakin potensial movie tersebut untuk disarankan ke user subyek.
+
+### 5.4. Top N Rekomendasi
+Untuk mengeluarkan hasil berupa top N rekomendasi, kita dapat melakukannya dengan memotong hasil dari fungsi get_recommendation(). Karena hasil dari fungsi tersebut sudah terurut, maka tinggal dipotong sesuai dengan nilai N yang kita inginkan. Perintahnya dalam Python akan seperti berikut.
+
+Top 3
+```python
+get_recommendation(complete_df, 100)[1:3]
+```
+
+Top 10
+```python
+get_recommendation(complete_df, 100)[1:10]
+```
+
+Top 20
+```python
+get_recommendation(complete_df, 100)[1:20]
+```
 
 ## 6. Evaluation
 Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini kami meninjau dari sisi kecepatan proses untuk menjadi pertimbangan evaluasi kinerja:
