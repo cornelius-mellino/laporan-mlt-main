@@ -233,7 +233,13 @@ Inti dari model yang kita bangun pada eksperimen kali ini terdiri dari tiga buah
 Fungsi ini memiliki kegunaan untuk menghitung jarak antar titik (item) dalam ruang berdimensi N. Semakin kecil (dekat) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin tinggi, begitu pula sebaliknya bila semakin besar (jauh) nilai jarak yang dihasilkan maka dapat disimpulkan tingkat kemiripannya semakin rendah.
 Berikut ini adalah rumus untuk menghitung *euclidian distance*:
 
-$$ sim(i,j) = \sqrt{ \sum_{k=1}^{n} (R_{k,i}-R_{k,j})^2} $$
+$$ sim(i,j) = \sqrt{ \sum_{k=1}^{N} (R_{k,i}-R_{k,j})^2} $$
+
+$$R_{k,i}$$ merupakan rating item k yang diberikan oleh user i. 
+$$R_{k,j}$$ merupakan rating item k yang diberikan oleh user j. 
+$$N$$ adalah jumlah total user yang ada.
+
+Implementasi algoritma ini tentu akan memiliki sedikit perbedaan bila kita terapkan pada *user based filtering* dan *item based filtering*. Pada eksperimen ini kita memakai metode *user based filtering*.
 
 Langkah-langkah algoritmanya adalah sebagai berikut:
 1. Cari movie(s) yang sama antara dua user yang berbeda.
@@ -245,26 +251,50 @@ Langkah-langkah algoritmanya adalah sebagai berikut:
 7. Selesai.
 
 ### 5.2. Fungsi get_similarities()
+Fungsi ini menghasilkan daftar nilai kesamaan (*similarity values*) dari seorang user terhadap seluruh user lain yang ada.
 
+Langkah-langkah algoritmanya adalah sebagai berikut:
+1. Buat daftar seluruh user yang ada.
+2. Keluarkan user yang menjadi subyek acuan perhitungan.
+3. Hitung nilai *euclidian distance* antara user subyek dengan setiap user lain yang ada dalam daftar.
+4. Masukkan nilai kesamaan hasil perhitungan *euclidian distance* tersebut ke dalam daftar.
+5. Sortir secara *descending*.
 
 ### 5.3. Fungsi get_recommendation()
+Fungsi ini menghasilkan daftar rekomendasi item (movies) yang akan disarankan pada user yang menjadi subyek. Penyusunan daftar rekomendasi tersebut memakai perhitungan matematis yang kemudian diurutkan nilainya. 
+
+Langkah-langkah algoritmanya adalah sebagai berikut:
+1. Buat daftar user beserta nilai *similarity* hasil perhitungan dari fungsi get_similarities().
+2. Untuk setiap user, hitung nilai rating x *similarity* untuk setiap movie yang pernah dinilai oleh user tersebut.
+3. Lakukan penjumlahan grouping untuk setiap movie terhadap nilai perkalian pada langkah nomor 2.
+4. Hitung indeks rekomendasi dengan cara membagi hasil penjumlahan grouping pada langkah nomor 3 dengan jumlah nilai similarity untuk setiap movie.
+5. Urutkan secara *descending*.
+
+Di sini, semakin besar nilai indeks rekomendasi maka semakin potensial movie tersebut untuk disarankan ke user subyek.
 
 ## 6. Evaluation
-Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini adalah aspek-aspek yang menjadi pertimbangan evaluasi kinerja:
-   1. *Processing speed*
-      Kecepatan proses memiliki poin penting dalam sebuah *recommender system*, apalagi yang berurusan dengan jumlah data yang besar dan tentu saja bertambah terus ukurannya dari waktu ke waktu. Maka dari itu baik algoritma berbasis perhitungan aljabar, statistik maupun *neural network* harus mempertimbangkan hal ini.
+Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini kami meninjau dari sisi kecepatan proses untuk menjadi pertimbangan evaluasi kinerja:
 
-      Pada eksperimen kali ini dengan ukuran data sebagai berikut:
-      * User = 66
-      * Movie = 2000
-      * 
+*Processing speed*
+   Kecepatan proses memiliki poin penting dalam sebuah *recommender system*, apalagi yang berurusan dengan jumlah data yang besar dan tentu saja bertambah terus ukurannya dari waktu ke waktu. Maka dari itu baik algoritma berbasis perhitungan aljabar, statistik maupun *neural network* harus mempertimbangkan hal ini.
 
+   Pada eksperimen kali ini dengan ukuran data sebagai berikut:
+   * User = 66
+   * Movie = 3.218
+   * Rating = 10.000
 
-
-
-## 7. Kesimpulan
-
-
+   Dari empat kali percobaan pemanggilan fungsi get_recommendation() didapatkan nilai yang cukup konsisten di kisaran 52-56 detik untuk kecepatan proses. Untuk data dengan 10.000 observasi, hal ini bisa dikatakan cukup lambat. Namun tentu saja dipengaruhi oleh spesifikasi hardware juga, dimana hardware yang dipakai oleh penulis memiliki spesifikasi sebagai berikut:
+   * Processor: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz 2.59 GHz
+   * Memory: 16.0 GB (15.8 GB usable)
+   * System Type: 64-bit operating system, x64-based processor
+   
+## 7. Kesimpulan dan Saran
+Terdapat beberapa kesimpulan yang dapat kita ambil dari eksperimen ini, antara lain:
+1. Perspektif user based filtering yang dipakai dapat menghasilkan rekomendasi movie untuk user yang menjadi subyek.
+2. Kecepatan dari proses bergantung pada ukuran data, semakin besar ukurannya proses menjadi semakin lama.
+3. Terdapat kelemahan pada algoritma ini, dimana jumlah movie dapat menghasilkan bias karena user pembanding yang hanya memberikan satu penilaian saja namun kebetulan movie yang dinilai sama dengan movie yang ada pada daftar movie milik user subyek dapat menghasilkan nilai rekomendasi yang cukup besar. Pemotongan user dengan penilaian hanya satu movie bisa dilakukan untuk mengurangi dampak hal ini.
+4. Algoritma ini dapat dipakai hingga skala data tertentu. Untuk situs dengan kapasitas movie yang sangat besar seperti Netflix, disarankan untuk menggunakan model atau algoritma yang lebih efisien.
+4. Saran pengembangan selanjutnya adalah implementasi probabilitas dalam pemilihan movie yang direkomendasikan dari daftar rekomendasi yang dihasilkan, misalnya pemilihan secara acak top 10 movie dari top 20 nya. Hal ini berguna untuk memberikan kesan hasil yang bervariasi di setiap hit yang dilakukan oleh user subyek di situs movie provider.
 
 ## 8. Referensi:
 
