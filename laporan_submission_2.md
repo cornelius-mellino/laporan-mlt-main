@@ -220,9 +220,9 @@ Berikut ini adalah rumus untuk menghitung *euclidian distance*:
 
 $$ sim(i,j) = \sqrt{ \sum_{k=1}^{N} (R_{k,i}-R_{k,j})^2} $$
 
-$$R_{k,i}$$ merupakan rating item k yang diberikan oleh user i. 
-$$R_{k,j}$$ merupakan rating item k yang diberikan oleh user j. 
-$$N$$ adalah jumlah total user yang ada.
+R(k,i) merupakan rating item k yang diberikan oleh user i. 
+R(k,j) merupakan rating item k yang diberikan oleh user j. 
+N adalah jumlah total user yang ada.
 
 Implementasi algoritma ini tentu akan memiliki sedikit perbedaan bila kita terapkan pada *user based filtering* dan *item based filtering*. Pada eksperimen ini kita memakai metode *user based filtering*.
 
