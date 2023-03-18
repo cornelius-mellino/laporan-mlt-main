@@ -162,19 +162,11 @@ Berikut ini adalah daftar 20 movies yang paling banyak dinilai oleh users.
 |4993   | 198|
 
 ### 3.7. Periksa panjang asli dari data rating
-Dari pemanggilan fungsi len() berikut ini menghasilkan nilai 100836, yang merepresentasikan jumlah total data rating yang ada.
-
-```python
-len(rating)
- ```
+Dari pemanggilan fungsi len() menghasilkan nilai 100836, yang merepresentasikan jumlah total data rating yang ada.
  
 ### 3.8. Periksa jumlah user pemberi rating
-Dari pemanggilan fungsi len() berikut ini menghasilkan nilai 610, yang merepresentasikan jumlah total user yang ada.
+Dari pemanggilan fungsi len() menghasilkan nilai 610, yang merepresentasikan jumlah total user yang ada.
 
-```python
-len(rating['userId'].unique())
- ```
-s
 ## 4. Data Preparation
 Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum diproses ke dalam model machine learning antara lain:
 
@@ -182,23 +174,12 @@ Teknik *data preparation* yang dilakukan untuk mempersiapkan data sebelum dipros
 Untuk melakukan pengujian terhadap validitas algoritma yang kita terapkan, sebetulnya kita tidak perlu menggunakan data yang terlalu besar, cukup dengan sebagian porsi data saja. Lain halnya bila kita ingin menguji performa dari algoritmanya dimana kita perlu memasang beban yang cukup besar sampai teridentifikasi titik dadalnya (*breakdown point*).
 Pada eksperimen ini kita memakai sekitar 10% data saja, kira-kira 10.000 observasi atau baris.
 
-```python
-rating = rating[:10000]
- ```
-
 ### 4.2. Pemeriksaan 
-Setelah data kita potong, kita melakukan pemeriksaan terhadap beberapa elemen seperti jumlah user dan movies. Pemanggilan fungsi len() dan unique() terhadap fitur UserId dan MovieId seperti dibawah menghasilkan nilai 66 users dan 3218 movies.
+Setelah data kita potong, kita melakukan pemeriksaan terhadap beberapa elemen seperti jumlah user dan movies. Pemanggilan fungsi len() dan unique() terhadap fitur UserId dan MovieId menghasilkan nilai 66 users dan 3218 movies.
 
-```python
-len(rating['userId'].unique())
-len(rating['movieId'].unique())
- ```
 ### 4.3. Penggabungan data
-Penggabungan data user dengan movies dengan menggunakan fungsi merge() dari library pandas.
+Penggabungan data user, movies dan rating dilakukan dengan menggunakan fungsi merge() dari library pandas.
 
-```python
-complete_df = pd.merge(rating, movies, how='inner', left_on = 'movieId', right_on = 'movieId')
- ```
 Struktur data hasil penggabungan akan menjadi seperti berikut:
  
 | # |  Column  | Non-Null Count | Dtype  |
@@ -211,21 +192,12 @@ Struktur data hasil penggabungan akan menjadi seperti berikut:
 | 5 | genres   |  7865 non-null | object |
 
 ### 4.4. Pemeriksaan duplikasi data
-Pemeriksaan duplikasi data penting dilakukan supaya tidak terjadi kesalahan dalam proses analisa atau pemrosesan melalui algoritma *machine learning*. Baris program berikut ini menghasilkan nilai 0, yang artinya tidak ada data yang terduplikasi.
-
-```python
-complete_df["duplicate"] = complete_df.duplicated()
-print(len(complete_df[complete_df["duplicate"] == True]))
-```
+Pemeriksaan duplikasi data penting dilakukan supaya tidak terjadi kesalahan dalam proses analisa atau pemrosesan melalui algoritma *machine learning*. Dari hasil pemeriksaan tidak ada duplikasi data yang terjadi.
 
 ### 4.5. Pemeriksaan *missing values*
 Pemeriksaan *missing values* dilakukan dengan memanggil fungsi isnull(). 
 
-```python
-complete_df.isnull().sum()
-```
-
-Baris program diatas menghasilkan keluaran sebagai berikut dibawah, yang artinya tidak terdapat *missing values*.
+Pemanggilan fungsi isnull() menghasilkan keluaran sebagai berikut dibawah, yang artinya tidak terdapat *missing values*.
 
 userId       0
 movieId      0
@@ -288,20 +260,53 @@ Di sini, semakin besar nilai indeks rekomendasi maka semakin potensial movie ter
 ### 5.4. Top N Rekomendasi
 Untuk mengeluarkan hasil berupa top N rekomendasi, kita dapat melakukannya dengan memotong hasil dari fungsi get_recommendation(). Karena hasil dari fungsi tersebut sudah terurut, maka tinggal dipotong sesuai dengan nilai N yang kita inginkan. Perintahnya dalam Python akan seperti berikut.
 
-Top 3
-```python
-get_recommendation(complete_df, 100)[1:3]
-```
+Top 3 for userId(100)
 
-Top 10
-```python
-get_recommendation(complete_df, 100)[1:10]
-```
+|  |                  Movie Title                     |
+|--|--------------------------------------------------|
+|1 |              National Lampoon's Van Wilder (2002)|  
+|2 |                              Wolf Man, The (1941)|  
+|3 |                                  Barb Wire (1996)|
 
-Top 20
-```python
-get_recommendation(complete_df, 100)[1:20]
-```
+Top 10 for userId(100)
+
+|  |                  Movie Title                     |
+|--|--------------------------------------------------|
+|1 |              National Lampoon's Van Wilder (2002)|  
+|2 |                              Wolf Man, The (1941)|  
+|3 |                                  Barb Wire (1996)|  
+|4 |                                Top Secret! (1984)|  
+|5 |                              It's My Party (1996)|  
+|6 | Black Cat, White Cat (Crna macka, beli macor) ...|  
+|7 |                                   Saturn 3 (1980)|  
+|8 |                         Gulliver's Travels (1939)|  
+|9 |                                  Jane Eyre (1996)|
+|10|                     Flirting With Disaster (1996)|  
+
+Top 20 for userId(100)
+
+|  |                  Movie Title                     |
+|--|--------------------------------------------------|
+|1 |              National Lampoon's Van Wilder (2002)|  
+|2 |                              Wolf Man, The (1941)|  
+|3 |                                  Barb Wire (1996)|  
+|4 |                                Top Secret! (1984)|  
+|5 |                              It's My Party (1996)|  
+|6 | Black Cat, White Cat (Crna macka, beli macor) ...|  
+|7 |                                   Saturn 3 (1980)|  
+|8 |                         Gulliver's Travels (1939)|  
+|9 |                                  Jane Eyre (1996)|  
+|10|                     Flirting With Disaster (1996)|  
+|11|                                  Hangar 18 (1980)|  
+|12|                                  Hairspray (1988)|  
+|13|                                  Indochine (1992)|  
+|14|                   Welcome to the Dollhouse (1995)|  
+|15|                           Drugstore Cowboy (1989)|  
+|16|                                  Threesome (1994)|  
+|17|                  Six Degrees of Separation (1993)|  
+|18|    Grave of the Fireflies (Hotaru no haka) (1988)|  
+|19|                         Night of the Comet (1984)|  
+|20|                   Galaxy of Terror (Quest) (1981)|  
 
 ## 6. Evaluation
 Evaluasi kinerja *recommender system* ini dapat ditinjau dari beberapa sisi. Berikut ini kami meninjau dari sisi kecepatan proses untuk menjadi pertimbangan evaluasi kinerja:
