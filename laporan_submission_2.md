@@ -60,10 +60,6 @@ Data yang dipakai pada proyek ini adalah *Movie Dataset* dari Kaggle oleh Shinig
 
 Untuk eksperimen ini kita akan memakai sekitar 10000 data saja untuk menguji validitas dari algoritma yang akan kita terapkan.
 
-```python
-movies = movies[:5000]
- ```
-
 ### 3.1. Struktur data Movie
 Untuk struktur data dari dataframe movies adalah sebagai berikut:
 
