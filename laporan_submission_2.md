@@ -195,6 +195,8 @@ Pemeriksaan *missing values* dilakukan dengan memanggil fungsi isnull().
 
 Pemanggilan fungsi isnull() menghasilkan keluaran sebagai berikut dibawah, yang artinya tidak terdapat *missing values*.
 
+| features   | #|
+|------------|--|
 |userId      | 0|
 |movieId     | 0|
 |rating      | 0|
@@ -202,7 +204,6 @@ Pemanggilan fungsi isnull() menghasilkan keluaran sebagai berikut dibawah, yang 
 |title       | 0|
 |genres      | 0|
 |duplicate   | 0|
-dtype: int64
 
 ## 5. Modeling
 Inti dari model yang kita bangun pada eksperimen kali ini terdiri dari tiga buah fungsi, yaitu:
